@@ -7,7 +7,8 @@ from tweetGenerator import createCorpus
 from tweetGenerator import generateResponse
 from FacebookPost import post
 import time
-
+from config import *
+import bcrypt
 #code
 class SampleApp(tk.Tk):
 
@@ -70,7 +71,7 @@ class StartPage(tk.Frame):
 
         #password enter button and checker
         def check_password():
-            if my_password.get() == '123':
+            if bcrypt.checkpw(my_password.get().encode('utf-8'), program_password.encode('utf-8')):
                 my_password.set('')
                 incorrect_password_label['text']=''
                 controller.show_frame('MenuPage')
@@ -153,7 +154,7 @@ class MenuPage(tk.Frame):
 
         tick ()
 
-        #buttons/frame to sleect which application to Scrape
+        #buttons/frame to select which application to Scrape
         button_frame = tk.Frame(self,bg='#80c1ff')
         button_frame.pack(fill='both', expand=True)
 
@@ -184,7 +185,7 @@ class MenuPage(tk.Frame):
         exit_button = tk.Button(button_frame, text='Exit', command=exit, relief='raised',borderwidth=3, width=50,height=5)
         exit_button.grid (row=2,column=0, pady=5)
 
-#-------------------------------------------facebook pages--------------------------------------------------
+#-------------------------------------------Facebook pages--------------------------------------------------
 class Facebook_page(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -195,11 +196,11 @@ class Facebook_page(tk.Frame):
         heading_label = tk.Label(self, text='Spear Phishing Tool', font=('orbitron', 45,'bold'), fg='white', bg='#0077e6')
         heading_label.pack(pady=25)
 
-        #facebook heading
+        #Facebook heading
         facebook_menu_label = tk.Label(self, text='Facebook', font=('orbitron', 13), fg='white', bg='#0077e6' )
         facebook_menu_label.pack()
 
-        #bottom frame for time/dev statment
+        #bottom frame for time/dev statement
         bottom_frame = tk.Frame(self,relief='raised', borderwidth=3)
         bottom_frame.pack(fill='x',side='bottom')
 
@@ -225,7 +226,7 @@ class Facebook_page(tk.Frame):
         tick ()
 
         #subheadings
-        #facebook selection path
+        #Facebook selection path
         selection_label_facebook = tk.Label(self, text='Please make a selection', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
         selection_label_facebook.pack(fill='x')
 
@@ -233,17 +234,17 @@ class Facebook_page(tk.Frame):
         path_label_facebook.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
 
 
-        #buttons/frame to sleect which application to Scrape
+        #buttons/frame to select which application to Scrape
         button_frame = tk.Frame(self,bg='#80c1ff')
         button_frame.pack(fill='both', expand=True)
 
-        #facebook symbol
+        #Facebook symbol
         facebook_image = tk.PhotoImage (file='images/facebook.png')
         facebook_label = tk.Label(button_frame, image=facebook_image)
         facebook_label.place(relx=0.6, rely=0)
         facebook_label.image = facebook_image
 
-        #buttons for facebook public/private
+        #buttons for Facebook public/private
         def scrape_public_facebook():
             controller.show_frame('facebook_public_page')
 
@@ -273,7 +274,7 @@ class facebook_public_page(tk.Frame):
         heading_label = tk.Label(self, text='Spear Phishing Tool', font=('orbitron', 45,'bold'), fg='white', bg='#0077e6')
         heading_label.pack(pady=25)
 
-        #facebook heading
+        #Facebook heading
         facebook_menu_label = tk.Label(self, text='Public Facebook', font=('orbitron', 13), fg='white', bg='#0077e6' )
         facebook_menu_label.pack()
 
@@ -303,7 +304,7 @@ class facebook_public_page(tk.Frame):
         tick ()
 
         #subheadings
-        #facebook selection path
+        #Facebook selection path
         selection_label_facebook = tk.Label(self, text='Please enter fields', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
         selection_label_facebook.pack(fill='x')
 
@@ -314,13 +315,13 @@ class facebook_public_page(tk.Frame):
         button_frame = tk.Frame(self,bg='#80c1ff')
         button_frame.pack(fill='both', expand=True)
 
-        #facebook symbol
+        #Facebook symbol
         facebook_image = tk.PhotoImage (file='images/facebook.png')
         facebook_label = tk.Label(button_frame, image=facebook_image)
         facebook_label.place(relx=0.6, rely=0)
         facebook_label.image = facebook_image
 
-        #function to pass arguments to ashrafs scripts
+        #function to pass arguments to Ashraf's scripts
         def send_facebook_url(facebook_url_entry, facebook_visibility_entry):
             if facebook_url_entry =='' or facebook_visibility_entry =='':
                 field_warning_label['text']='*Please fill all fields*'
@@ -333,7 +334,7 @@ class facebook_public_page(tk.Frame):
         field_warning_label = tk.Label (button_frame,text='',font=('orbitron', 13),fg='white', bg='#80c1ff', anchor='n')
         field_warning_label.grid(row=4,column=1,pady=5, ipady=20)
 
-        #entry feilds
+        #entry fields
         facebook_url_label = tk.Label(button_frame, text='URL of friend to Scrape:', font=('orbitron', 15), fg='white', bg='#80c1ff',anchor='w' )
         facebook_url_label.place(relx=0.04, rely=0, relwidth=0.25, relheight=0.1)
         enter_visibility_label = tk.Label(button_frame, text='visible/invisible :', font=('orbitron', 15), fg='white', bg='#80c1ff',anchor='w' )
@@ -365,7 +366,7 @@ class facebook_private_page(tk.Frame):
         heading_label = tk.Label(self, text='Spear Phishing Tool', font=('orbitron', 45,'bold'), fg='white', bg='#0077e6')
         heading_label.pack(pady=25)
 
-        #facebook heading
+        #Facebook heading
         facebook_menu_label = tk.Label(self, text='Private Facebook', font=('orbitron', 13), fg='white', bg='#0077e6' )
         facebook_menu_label.pack()
 
@@ -395,30 +396,30 @@ class facebook_private_page(tk.Frame):
         tick ()
 
         #subheadings
-        #facebook selection path
+        #Facebook selection path
         selection_label_facebook = tk.Label(self, text='Please enter fields', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
         selection_label_facebook.pack(fill='x')
 
         path_label_facebook = tk.Label(self, text='Previous Page: Facebook', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='e' )
         path_label_facebook.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
 
-        #frame for buttons/entry feilds
+        #frame for buttons/entry fields
         button_frame = tk.Frame(self,bg='#80c1ff')
         button_frame.pack(fill='both', expand=True)
 
-        #facebook symbol
+        #Facebook symbol
         facebook_image = tk.PhotoImage (file='images/facebook.png')
         facebook_label = tk.Label(button_frame, image=facebook_image)
         facebook_label.place(relx=0.6, rely=0)
         facebook_label.image = facebook_image
 
-        #function to pass arguments to ashrafs scripts
+        #function to pass arguments to Ashraf's scripts
         def send_facebook_quad(facebook_email_entry, facebook_username_entry, facebook_password_entry, facebook_numberOfFriends_entry):
             if facebook_email_entry =='' or facebook_username_entry =='' or facebook_password_entry =='' or facebook_numberOfFriends_entry =='' :
                 status_label['text']='*Please fill all fields*'
             else:
 
-                #run Ashraf main.py script #linux path is the tor download path----------------------------
+                #run Ashraf's main.py script ----------------------------
                 driver = loginToFacebook(pathToTorInstallation, facebook_email_entry , facebook_password_entry)
                 time.sleep(8)
 
@@ -430,7 +431,7 @@ class facebook_private_page(tk.Frame):
                 #------------------------------------------------------------------------------------------
                 controller.show_frame('Facebook_page')
 
-        #warning symbol if any feild missing
+        #warning symbol if any field missing
         status_label = tk.Label (button_frame,text='',font=('orbitron', 13),fg='white', bg='#80c1ff', anchor='n')
         status_label.grid(row=5,column=1,pady=5, ipady=20)
 
@@ -444,7 +445,7 @@ class facebook_private_page(tk.Frame):
         enter_friends_label = tk.Label(button_frame, text='Number of friends:', font=('orbitron', 15), fg='white', bg='#80c1ff',anchor='w' )
         enter_friends_label.place(relx=0.08, rely=0.36, relwidth=0.25, relheight=0.1)
 
-        #entry feilds
+        #entry fields
         facebook_email_entry = tk.Entry(button_frame, width=59)
         facebook_email_entry.grid (row=0,column=1,pady=5, ipady=20)
         facebook_username_entry = tk.Entry(button_frame, width=59)
@@ -523,7 +524,7 @@ class Twitter_page(tk.Frame):
         twitter_label.place(relx=0.6, rely=0)
         twitter_label.image = twitter_image
 
-        #function to pass to ashrafs scripts
+        #function to pass to Ashraf's scripts
         def send_twitter_handle (twitter_handle_entry):
             if twitter_handle_entry =='':
                 field_warning_label['text']='*Please fill all fields*'
