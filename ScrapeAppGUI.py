@@ -2,11 +2,11 @@
 #Abdullah Chattha mar 22/2021
 #imports
 import tkinter as tk
+from FacebookChatPhisher import *
 from tweetGenerator import createCorpus
 from tweetGenerator import generateResponse
-from PrivateFacebookScraper.main import *
+from FacebookPost import post
 import time
-
 
 #code
 class SampleApp(tk.Tk):
@@ -49,8 +49,8 @@ class StartPage(tk.Frame):
 
         #window attributes
         self.controller.title ("Spear Phishing Tool")
-        self.controller.state ( 'zoomed')
-        self.controller.iconphoto (False, tk.PhotoImage (file='C:/Users/Abdullah Chattha/4990/scraper.png'))
+        self.controller.state ('normal')
+        self.controller.iconphoto (False, tk.PhotoImage (file='images/scraper.png'))
 
         #heading for start page
         heading_label = tk.Label(self, text='Spear Phishing Tool', font=('orbitron', 45,'bold'), fg='white', bg='#0077e6')
@@ -93,7 +93,7 @@ class StartPage(tk.Frame):
         python_dev_label.place(relx=0)
 
         #python symbol
-        python_image = tk.PhotoImage (file='python.png')
+        python_image = tk.PhotoImage (file='images/python.png')
         python_label = tk.Label(bottom_frame, image=python_image)
         python_label.place(relx=0.11)
         python_label.image = python_image
@@ -137,7 +137,7 @@ class MenuPage(tk.Frame):
         python_dev_label.place(relx=0)
 
         #python symbol
-        python_image = tk.PhotoImage (file='python.png')
+        python_image = tk.PhotoImage (file='images/python.png')
         python_label = tk.Label(bottom_frame, image=python_image)
         python_label.place(relx=0.11)
         python_label.image = python_image
@@ -158,7 +158,7 @@ class MenuPage(tk.Frame):
         button_frame.pack(fill='both', expand=True)
 
         #spear fish symbol
-        fish_image = tk.PhotoImage (file='fish.png')
+        fish_image = tk.PhotoImage (file='images/fish.png')
         fish_label = tk.Label(button_frame, image=fish_image)
         fish_label.place(relx=0.6, rely=0)
         fish_label.image = fish_image
@@ -208,7 +208,7 @@ class Facebook_page(tk.Frame):
         python_dev_label.place(relx=0)
 
         #python symbol
-        python_image = tk.PhotoImage (file='python.png')
+        python_image = tk.PhotoImage (file='images/python.png')
         python_label = tk.Label(bottom_frame, image=python_image)
         python_label.place(relx=0.11)
         python_label.image = python_image
@@ -238,7 +238,7 @@ class Facebook_page(tk.Frame):
         button_frame.pack(fill='both', expand=True)
 
         #facebook symbol
-        facebook_image = tk.PhotoImage (file='facebook.png')
+        facebook_image = tk.PhotoImage (file='images/facebook.png')
         facebook_label = tk.Label(button_frame, image=facebook_image)
         facebook_label.place(relx=0.6, rely=0)
         facebook_label.image = facebook_image
@@ -286,7 +286,7 @@ class facebook_public_page(tk.Frame):
         python_dev_label.place(relx=0)
 
         #python symbol
-        python_image = tk.PhotoImage (file='python.png')
+        python_image = tk.PhotoImage (file='images/python.png')
         python_label = tk.Label(bottom_frame, image=python_image)
         python_label.place(relx=0.11)
         python_label.image = python_image
@@ -315,7 +315,7 @@ class facebook_public_page(tk.Frame):
         button_frame.pack(fill='both', expand=True)
 
         #facebook symbol
-        facebook_image = tk.PhotoImage (file='facebook.png')
+        facebook_image = tk.PhotoImage (file='images/facebook.png')
         facebook_label = tk.Label(button_frame, image=facebook_image)
         facebook_label.place(relx=0.6, rely=0)
         facebook_label.image = facebook_image
@@ -378,7 +378,7 @@ class facebook_private_page(tk.Frame):
         python_dev_label.place(relx=0)
 
         #python symbol
-        python_image = tk.PhotoImage (file='python.png')
+        python_image = tk.PhotoImage (file='images/python.png')
         python_label = tk.Label(bottom_frame, image=python_image)
         python_label.place(relx=0.11)
         python_label.image = python_image
@@ -407,7 +407,7 @@ class facebook_private_page(tk.Frame):
         button_frame.pack(fill='both', expand=True)
 
         #facebook symbol
-        facebook_image = tk.PhotoImage (file='facebook.png')
+        facebook_image = tk.PhotoImage (file='images/facebook.png')
         facebook_label = tk.Label(button_frame, image=facebook_image)
         facebook_label.place(relx=0.6, rely=0)
         facebook_label.image = facebook_image
@@ -418,8 +418,8 @@ class facebook_private_page(tk.Frame):
                 status_label['text']='*Please fill all fields*'
             else:
 
-                #run Ashraf main.py scrpit #linux path is the tor download path----------------------------
-                driver = loginToFacebook(linuxPath, facebook_email_entry , facebook_password_entry)
+                #run Ashraf main.py script #linux path is the tor download path----------------------------
+                driver = loginToFacebook(pathToTorInstallation, facebook_email_entry , facebook_password_entry)
                 time.sleep(8)
 
                 FULLHTMLPAGE = getFriendsListHTMLPage(driver, facebook_username_entry)
@@ -489,7 +489,7 @@ class Twitter_page(tk.Frame):
         python_dev_label.place(relx=0)
 
         #python symbol
-        python_image = tk.PhotoImage (file='python.png')
+        python_image = tk.PhotoImage (file='images/python.png')
         python_label = tk.Label(bottom_frame, image=python_image)
         python_label.place(relx=0.11)
         python_label.image = python_image
@@ -518,7 +518,7 @@ class Twitter_page(tk.Frame):
         button_frame.pack(fill='both', expand=True)
 
         #twitter symbol
-        twitter_image = tk.PhotoImage (file='twitter.png')
+        twitter_image = tk.PhotoImage (file='images/twitter.png')
         twitter_label = tk.Label(button_frame, image=twitter_image)
         twitter_label.place(relx=0.6, rely=0)
         twitter_label.image = twitter_image
@@ -538,7 +538,7 @@ class Twitter_page(tk.Frame):
         field_warning_label = tk.Label (button_frame,text='',font=('orbitron', 13),fg='white', bg='#80c1ff', anchor='n')
         field_warning_label.grid(row=2,column=1,pady=5, ipady=20)
 
-        #entry feilds
+        #entry fields
         twitter_handle_label = tk.Label(button_frame, text='Twitter handle of account:', font=('orbitron', 15), fg='white', bg='#80c1ff',anchor='w' )
         twitter_handle_label.place(relx=0.04, rely=0, relwidth=0.25, relheight=0.1)
 

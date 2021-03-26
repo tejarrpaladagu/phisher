@@ -3,19 +3,22 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+REQUIRED = ['FacebookChatPhisher', 'tweetGenerator', 'FacebookPoster']
 setuptools.setup(
-    name="FacebookChat-Automated-Social-Media-Spear-Phisher", 
+    name="Automated_Spear_Phisher_Tool", 
     version="0.0.1",
-    author="Ashraf Taifour, Abdullah Arif, Abdullah Chattha, Abdullah Chattha, Steve Pham",
-    description="A bot to read and write to Facebook via selenium",
+    author="Abdullah Chattha",
+    author_email="abdullahmeo11@gmail.com",
+    description="This program is automated spear phishing tool that works on both Facebook and Twitter.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/AshrafTaifour/fbLoginAndScrape",
+    url="https://github.com/Abdullah-chattha/Fb-Twitter-gui",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    python_requires='>=3.7',
+    install_requires=REQUIRED,
+    python_requires='>=3.8',
 )
