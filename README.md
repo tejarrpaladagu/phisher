@@ -32,6 +32,10 @@ source facebookEnv/bin/activate
 5. Run program
     `python3 ScrapeAppGUI.py`
 
+## troubleshooting
+If you are running on a python version that doesn't have tkinter installed
+please run 
+`apt-get install python3-tk`
 
 ## Importance
 Phishing attacks accounted for 80% of security incidents. And the pandemic has increased the number of cyber attacks. So, it is imperative that we study different social attacks. There is a more potent type of phishing called “spear-phishing”, where an attacker gathers information about a user and uses that to craft a more persuasive message. This technique has a much higher click through rate than average phishing attacks. Fortunately, this method is time-consuming and so the attacker cannot target as many people. However, we believe that you can use machine learning to automate this process. If this process becomes widespread, it would have disastrous consequences.
