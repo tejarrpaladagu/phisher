@@ -2,10 +2,9 @@
 #Abdullah Chattha mar 22/2021
 #imports
 import tkinter as tk
-#from tweetGenerator import createCorpus #from https://github.com/Aarif123456/tweetGenerator
-#from tweetGenerator import generateResponse  #from https://github.com/Aarif123456/tweetGenerator
 from tweetGenerator import createCorpus
 from tweetGenerator import generateResponse
+from PrivateFacebookScraper.main import *
 import time
 
 
@@ -418,18 +417,20 @@ class facebook_private_page(tk.Frame):
             if facebook_email_entry =='' or facebook_username_entry =='' or facebook_password_entry =='' or facebook_numberOfFriends_entry =='' :
                 status_label['text']='*Please fill all fields*'
             else:
-                #open test.py for writing only (w)
-                file1 = open(r"C:\Users\Abdullah Chattha\4990\example\test.py","w")
-                file1.write("EMAIL= '"+facebook_email_entry+"'\n")
-                file1.write("passw= '"+facebook_password_entry+"'\n")
-                file1.write("UNAME= '"+facebook_username_entry+"'\n")
-                file1.write("numoffriends= "+facebook_numberOfFriends_entry+"\n")
-                file1.close()
 
-                #run Ashraf main.py scrpit
+                #run Ashraf main.py scrpit #linux path is the tor download path----------------------------
+                driver = loginToFacebook(linuxPath, facebook_email_entry , facebook_password_entry)
+                time.sleep(8)
 
+                FULLHTMLPAGE = getFriendsListHTMLPage(driver, facebook_username_entry)
+                # will parse the HTML page to obtain hrefs of friends.
+                friendURLS = parseHTML(FULLHTMLPAGE, "friendsurls", 1)
+
+                scrapeLikePages(driver, friendURLS, int(facebook_numberOfFriends_entry))
+                #------------------------------------------------------------------------------------------
                 controller.show_frame('Facebook_page')
 
+        #warning symbol if any feild missing
         status_label = tk.Label (button_frame,text='',font=('orbitron', 13),fg='white', bg='#80c1ff', anchor='n')
         status_label.grid(row=5,column=1,pady=5, ipady=20)
 
