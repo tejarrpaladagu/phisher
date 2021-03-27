@@ -52,5 +52,5 @@ class FacebookPublicPage(CommonFrame):
 
     def createFieldWarning(self):
         self.field_warning_label = Label (self.button_frame,text='',font=('orbitron', 13),
-                                           fg='white', bg='#80c1ff', anchor='n')
+                                           fg='white', bg='#80c1ff', anchor='s')
         self.field_warning_label.grid(row=4,column=1,pady=5, ipady=20)
