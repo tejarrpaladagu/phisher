@@ -33,7 +33,7 @@ class LoginPage(CommonFrame):
         password_entry_box.pack(ipady=7)
 
     def createSubmitButton(self):
-        enter_button = Button(self, text='Enter', command=self.check_password, relief='raised', borderwidth=3, width=40, height=3 )
+        enter_button = Button(self, text='Enter', command=self.checkPassword, relief='raised', borderwidth=3, width=40, height=3 )
         enter_button.pack(pady=10)
 
     def createInvalidPasswordLabel(self):
@@ -41,7 +41,7 @@ class LoginPage(CommonFrame):
         self.incorrect_password_label.pack(fill='both', expand=True)
 
     #password enter button and checks to see if it matches password from the configuration file
-    def check_password(self):
+    def checkPassword(self):
         if bcrypt.checkpw(self.my_password.get().encode('utf-8'), program_password.encode('utf-8')):
             self.my_password.set('')
             self.incorrect_password_label['text']=''
