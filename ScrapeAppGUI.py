@@ -6,6 +6,7 @@ from FacebookChatPhisher import *
 from tweetGenerator import createCorpus
 from tweetGenerator import generateResponse
 from FacebookPost import post
+import phishingTextGenerator 
 import time
 from config import *
 import bcrypt
