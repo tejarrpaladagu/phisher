@@ -5,7 +5,7 @@ class MenuPage(CommonFrame):
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent)
-        # Set center subheading
+        #Set center subheading
         self.setSubHeading('Main Menu')
         #selection label
         self.createLeftSubHeading('Please make a selection')

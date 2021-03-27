@@ -1,11 +1,13 @@
 from tkinter import Label, Button, Entry
 from CommonFrame import CommonFrame
+# TODO: add face book public scraper
+# TODO: make sure posting works on public scraper as well 
+from FacebookPost import post
 
 class FacebookPublicPage(CommonFrame):
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent)
-        
 
         #subheadings
         self.setSubHeading('Public Facebook')

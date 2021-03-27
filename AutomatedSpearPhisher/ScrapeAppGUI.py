@@ -2,13 +2,6 @@
 #Abdullah Chattha mar 22/2021
 #imports
 from tkinter import Tk, Frame
-from FacebookChatPhisher import *
-from tweetGenerator import createCorpus
-from tweetGenerator import generateResponse
-from FacebookPost import post
-import phishingTextGenerator 
-import time
-from config import *
 from LoginPage import LoginPage
 from MenuPage import MenuPage
 from FacebookPage import FacebookPage
