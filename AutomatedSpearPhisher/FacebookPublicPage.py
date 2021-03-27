@@ -24,16 +24,11 @@ class FacebookPublicPage(CommonFrame):
         #create field that will show warnings 
         self.createFieldWarning()
 
-        #entry fields
-        facebook_url_label = Label(button_frame, text='URL of friend to Scrape:', font=('orbitron', 15), fg='white', bg='#80c1ff',anchor='w' )
-        facebook_url_label.place(relx=0.04, rely=0, relwidth=0.25, relheight=0.1)
-        enter_visibility_label = Label(button_frame, text='visible/invisible :', font=('orbitron', 15), fg='white', bg='#80c1ff',anchor='w' )
-        enter_visibility_label.place(relx=0.09, rely=0.12, relwidth=0.25, relheight=0.1)
-
-        self.facebook_url_entry = Entry(button_frame, width=59)
-        self.facebook_url_entry.grid (row=1,column=1,pady=5, ipady=20)
-        self.facebook_visibility_entry = Entry(button_frame, width=59)
-        self.facebook_visibility_entry.grid (row=2,column=1,pady=5, ipady=20)
+        #create entry fields and their label
+        self.setUpLabelGrid(start_row=1, start_col=0)
+        self.setUpEntryGrid(start_row=1, start_col=1)
+        self.addLabelWithEntry('URL of friend to Scrape:', "facebook_url_entry")
+        self.addLabelWithEntry('visible/invisible :', "facebook_visibility_entry")
 
         #send button
         self.createButton(button_frame, text='Enter', command=self.send_facebook_url, 
@@ -45,8 +40,8 @@ class FacebookPublicPage(CommonFrame):
 
     #TODO: function to pass arguments to Ashraf's scripts
     def send_facebook_url(self):
-        facebook_url_entry = self.facebook_url_entry.get()
-        facebook_visibility_entry = self.facebook_visibility_entry.get()
+        facebook_url_entry = self.getValueOfEntry("facebook_url_entry")
+        facebook_visibility_entry = self.getValueOfEntry("facebook_visibility_entry")
 
         if facebook_url_entry =='' or facebook_visibility_entry =='':
             self.field_warning_label['text']='*Please fill all fields*'
