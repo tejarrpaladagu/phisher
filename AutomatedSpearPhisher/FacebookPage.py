@@ -10,12 +10,8 @@ class FacebookPage(CommonFrame):
 
         #subheadings
         #Facebook selection path
-        selection_label_facebook = Label(self, text='Please make a selection', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
-        selection_label_facebook.pack(fill='x')
-
-        path_label_facebook = Label(self, text='Previous Page: Main menu', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='e' )
-        path_label_facebook.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
-
+        super().createLeftSubHeading('Please make a selection')
+        super().createRightSubHeading('Previous Page: Main menu')
 
         #buttons/frame to select which application to Scrape
         button_frame = super().createAndGetButtonFrame()

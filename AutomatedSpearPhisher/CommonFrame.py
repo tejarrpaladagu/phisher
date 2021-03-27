@@ -40,8 +40,16 @@ class CommonFrame(Frame):
         self.time_label.after(200,self.tick)
 
     def setSubHeading(self, sub_heading):
-        sub_heading_label = Label(self, text=sub_heading, font=('orbitron', 13), fg='white', bg='#0077e6' )
-        sub_heading_label.pack()
+        heading_label = Label(self, text=sub_heading, font=('orbitron', 13), fg='white', bg='#0077e6' )
+        heading_label.pack()
+
+    def createLeftSubHeading(self, sub_heading):
+        heading_label = Label(self, text=sub_heading, font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
+        heading_label.pack(fill='x')
+
+    def createRightSubHeading(self, sub_heading):
+        heading_label = Label(self, text=sub_heading, font=('orbitron', 15), fg='white', bg='#0077e6', anchor='e' )
+        heading_label.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
 
     #frame for buttons
     def createAndGetButtonFrame(self):
@@ -55,4 +63,5 @@ class CommonFrame(Frame):
         image_label.place(relx=0.6, rely=0)
         image_label.image = image
 
+   
         

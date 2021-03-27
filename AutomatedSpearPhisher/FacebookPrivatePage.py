@@ -10,11 +10,8 @@ class FacebookPrivatePage(CommonFrame):
 
         #subheadings
         #Facebook selection path
-        selection_label_facebook = Label(self, text='Please enter fields', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
-        selection_label_facebook.pack(fill='x')
-
-        path_label_facebook = Label(self, text='Previous Page: Facebook', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='e' )
-        path_label_facebook.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
+        super().createLeftSubHeading('Please enter fields')
+        super().createRightSubHeading('Previous Page: Facebook')
 
         #frame for buttons/entry fields
         button_frame = super().createAndGetButtonFrame()

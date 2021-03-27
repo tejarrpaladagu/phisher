@@ -11,11 +11,8 @@ class TwitterPage(CommonFrame):
 
         #subheadings
         #twitter selection path
-        selection_label_twitter = Label(self, text='Please enter fields', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
-        selection_label_twitter.pack(fill='x')
-
-        path_label_twitter = Label(self, text='Previous Page: Main menu', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='e' )
-        path_label_twitter.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
+        super().createLeftSubHeading('Please enter fields')
+        super().createRightSubHeading('Previous Page: Main menu')
 
         #frame for buttons
         button_frame = super().createAndGetButtonFrame()

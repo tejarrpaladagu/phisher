@@ -9,8 +9,8 @@ class MenuPage(CommonFrame):
         super().setSubHeading('Main Menu')
 
         #selection label
-        selection_label = Label(self, text='Please make a selection', font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
-        selection_label.pack(fill='x')
+        super().createLeftSubHeading('Please make a selection')
+        
 
         #buttons/frame to select which application to Scrape
         button_frame = super().createAndGetButtonFrame()
