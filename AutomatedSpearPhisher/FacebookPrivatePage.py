@@ -1,22 +1,24 @@
 from tkinter import Label, Button, Entry
 from CommonFrame import CommonFrame
 from config import pathToTorInstallation
+from FacebookChatPhisher import *
 
 class FacebookPrivatePage(CommonFrame):
 
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent)
-        self.setSubHeading('Private Facebook')
+        
 
         #subheadings
+        self.setSubHeading('Private Facebook')
         #Facebook selection path
         self.createLeftSubHeading('Please enter fields')
         self.createRightSubHeading('Previous Page: Facebook')
 
         #frame for buttons/entry fields
         self.createButtonFrame()
-        button_frame = self.button_frame
+        button_frame = self.getButtonFrame()
 
         #Facebook symbol
         self.createPictureInFrame('images/facebook.png')
@@ -68,8 +70,6 @@ class FacebookPrivatePage(CommonFrame):
         send_button.grid (row=4,column=1, pady=5)
 
         #back button
-        def exit():
-            controller.show_frame('FacebookPage')
+        back = self.getPageChangeFunction('FacebookPage')
+        self.createButton(button_frame, text='Back', command=back, row=5,col=0)
 
-        exit_button = Button(button_frame, text='Back', command=exit, relief='raised',borderwidth=3, width=50,height=5)
-        exit_button.grid (row=5,column=0, pady=5)

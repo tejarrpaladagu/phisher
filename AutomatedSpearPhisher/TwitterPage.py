@@ -1,6 +1,6 @@
 from tkinter import Label, Button, Frame, Entry
-from tweetGenerator import createCorpus
-from tweetGenerator import generateResponse
+from tweetGenerator import createCorpusForUser
+from tweetGenerator import generateTweet
 from CommonFrame import CommonFrame
 
 #-------------------------------------------Twitter page----------------------------------------------
@@ -9,16 +9,16 @@ class TwitterPage(CommonFrame):
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent)           
-        self.setSubHeading('Twitter')
 
         #subheadings
+        self.setSubHeading('Twitter')
         #twitter selection path
         self.createLeftSubHeading('Please enter fields')
         self.createRightSubHeading('Previous Page: Main menu')
 
         #frame for buttons
         self.createButtonFrame()
-        button_frame = self.button_frame
+        button_frame = self.getButtonFrame()
 
         #twitter symbol
         self.createPictureInFrame('images/twitter.png')
@@ -28,7 +28,7 @@ class TwitterPage(CommonFrame):
             if twitter_handle_entry =='':
                 field_warning_label['text']='*Please fill all fields*'
             else:
-                #call Abdullah a part
+                #call tweet generator
                 createCorpusForUser (twitter_handle_entry)
                 generateTweet (twitter_handle_entry, 'example.com')
 
@@ -49,9 +49,6 @@ class TwitterPage(CommonFrame):
         send_button = Button(button_frame, text='Enter', command= lambda:send_twitter_handle(twitter_handle_entry.get()) , relief='raised',borderwidth=3, width=50,height=5)
         send_button.grid (row=1,column=1, pady=5)
 
-        #exit
-        def exit():
-            controller.show_frame('MenuPage')
-
-        exit_button = Button(button_frame, text='Back', command=exit, relief='raised',borderwidth=3, width=50,height=5)
-        exit_button.grid (row=2,column=0, pady=5)
+        #back button
+        back = self.getPageChangeFunction('MenuPage')
+        self.createButton(button_frame, text='Back', command=back, row=2,col=0)

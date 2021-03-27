@@ -1,6 +1,7 @@
 from tkinter import Frame, PhotoImage, Label, Button
 from functools import partial
 from warnings import warn
+from typing import Callable
 import time
 
 # Common Frame with header and footer
@@ -41,15 +42,15 @@ class CommonFrame(Frame):
         self.time_label.config(text=current_time)
         self.time_label.after(200,self.tick)
 
-    def setSubHeading(self, sub_heading):
+    def setSubHeading(self, sub_heading: str):
         heading_label = Label(self, text=sub_heading, font=('orbitron', 13), fg='white', bg='#0077e6' )
         heading_label.pack()
 
-    def createLeftSubHeading(self, sub_heading):
+    def createLeftSubHeading(self, sub_heading: str):
         heading_label = Label(self, text=sub_heading, font=('orbitron', 15), fg='white', bg='#0077e6', anchor='w' )
         heading_label.pack(fill='x')
 
-    def createRightSubHeading(self, sub_heading):
+    def createRightSubHeading(self, sub_heading: str):
         heading_label = Label(self, text=sub_heading, font=('orbitron', 15), fg='white', bg='#0077e6', anchor='e' )
         heading_label.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
 
@@ -60,13 +61,13 @@ class CommonFrame(Frame):
         self.button_row = 0
         self.button_col=0
 
-    def createPictureInFrame(self, image_path):
+    def createPictureInFrame(self, image_path: str):
         image = PhotoImage (file=image_path)
         image_label = Label(self.button_frame, image=image)
         image_label.place(relx=0.6, rely=0)
         image_label.image = image
 
-    def changePages(self, page_name):
+    def changePages(self, page_name: str):
         self.controller.show_frame(page_name)
 
     def getButtonFrame(self):
@@ -78,13 +79,18 @@ class CommonFrame(Frame):
             warn("Main button frame did not exist... Manually creating button frame")
         return self.button_frame
 
-    # add button to main button frame - and got to new row 
-    def autoAddButton(self, button_text, button_command, style='raised', 
+    def createButton(self, button_frame: Frame, text: str, command: Callable[[], None], 
+                   row: int, col: int, style='raised', borderwidth=3, width=50,height=5):
+        button = Button(button_frame, text=text, command=command,
+                        relief=style,borderwidth=borderwidth, width=width,height=height)
+        button.grid (row=row,column=col, pady=5)
+    
+    # add button to main button frame - and go to new row 
+    def autoAddButton(self, text: str, command : Callable[[], None], style='raised', 
                       borderwidth=3, width=50,height=5):
         button_frame = self.getButtonFrame()
-        button = Button(button_frame, text=button_text, command=button_command,
-                        relief=style,borderwidth=borderwidth, width=width,height=height)
-        button.grid (row=self.button_row,column=self.button_col, pady=5)
+        self.createButton(button_frame, text, command, self.button_row, 
+                       self.button_col, style, borderwidth, width, height)
         self.button_row+=1
 
     def setButtonRow(row: int):
@@ -93,7 +99,10 @@ class CommonFrame(Frame):
     def setButtonCol(col: int):
         self.button_col = col
 
-    def createChangePageButton(self, page_name, button_text):
-        change_page_func = partial(self.changePages, page_name)
-        self.autoAddButton(button_text, change_page_func)
+    def getPageChangeFunction(self, page_name: str) -> Callable[[], None]:
+        return partial(self.changePages, page_name)
+
+    def createChangePageButton(self, page_name: str, text: str):
+        change_page_func = self.getPageChangeFunction(page_name)
+        self.autoAddButton(text, change_page_func)
         
