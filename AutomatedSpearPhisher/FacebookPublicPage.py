@@ -3,7 +3,7 @@ from CommonFrame import CommonFrame
 # TODO: add face book public scraper
 # TODO: make sure posting works on public scraper as well 
 from FacebookPost import post
-from helpers import createFieldWarning
+from helpers import *
 
 class FacebookPublicPage(CommonFrame):
     def __init__(self, parent, controller):
@@ -11,10 +11,10 @@ class FacebookPublicPage(CommonFrame):
         super().__init__(parent)
 
         #subheadings
-        self.setSubHeading('Public Facebook')
+        setSubHeading(self, 'Public Facebook')
         #Facebook selection path
-        self.createLeftSubHeading('Please enter fields')
-        self.createRightSubHeading('Previous Page: Facebook')
+        createLeftSubHeading(self, 'Please enter fields')
+        createRightSubHeading(self, 'Previous Page: Facebook')
 
         #frame for buttons
         self.createButtonFrame()

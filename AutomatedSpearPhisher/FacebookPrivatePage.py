@@ -6,7 +6,7 @@ from FacebookChatPhisher import *
 from FacebookPost import post
 import phishingTextGenerator 
 from time import sleep
-from helpers import createFieldWarning
+from helpers import *
 
 class FacebookPrivatePage(CommonFrame):
     def __init__(self, parent, controller):
@@ -14,10 +14,10 @@ class FacebookPrivatePage(CommonFrame):
         super().__init__(parent)
         
         #subheadings
-        self.setSubHeading('Private Facebook')
+        setSubHeading(self, 'Private Facebook')
         #Facebook selection path
-        self.createLeftSubHeading('Please enter fields')
-        self.createRightSubHeading('Previous Page: Facebook')
+        createLeftSubHeading(self, 'Please enter fields')
+        createRightSubHeading(self, 'Previous Page: Facebook')
 
         #frame for buttons/entry fields
         self.createButtonFrame()
@@ -33,7 +33,7 @@ class FacebookPrivatePage(CommonFrame):
         self.addLabelWithEntry('Email used for Facebook:', 'facebook_email_entry')
         self.addLabelWithEntry('Facebook username:', 'facebook_username_entry')
         self.addLabelWithEntry('Facebook Password:', 'facebook_password_entry')
-        self.addLabelWithEntry('enter_friends_label', 'facebook_numberOfFriends_entry')
+        self.addLabelWithEntry('Number of friends:', 'facebook_numberOfFriends_entry')
 
         #send button
         self.createButton(button_frame, text='Enter', command=self.send_facebook_quad, row=5, col=1)

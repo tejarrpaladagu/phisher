@@ -2,7 +2,7 @@ from tkinter import Label, Button, Frame, Entry
 from tweetGenerator import createCorpusForUser
 from tweetGenerator import generateTweet
 from CommonFrame import CommonFrame
-from helpers import createFieldWarning
+from helpers import *
 
 #-------------------------------------------Twitter page----------------------------------------------
 class TwitterPage(CommonFrame):
@@ -11,10 +11,10 @@ class TwitterPage(CommonFrame):
         super().__init__(parent)           
 
         #subheadings
-        self.setSubHeading('Twitter')
+        setSubHeading(self, 'Twitter')
         #twitter selection path
-        self.createLeftSubHeading('Please enter fields')
-        self.createRightSubHeading('Previous Page: Main menu')
+        createLeftSubHeading(self, 'Please enter fields')
+        createRightSubHeading(self, 'Previous Page: Main menu')
 
         #frame for buttons
         self.createButtonFrame()

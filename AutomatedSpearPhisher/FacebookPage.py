@@ -1,4 +1,5 @@
 from CommonFrame import CommonFrame
+from helpers import * 
 
 # Page for Facebook selection
 class FacebookPage(CommonFrame):
@@ -7,10 +8,10 @@ class FacebookPage(CommonFrame):
         super().__init__(parent)
 
         #subheadings
-        self.setSubHeading('Facebook')
+        setSubHeading(self, 'Facebook')
         #Facebook selection path
-        self.createLeftSubHeading('Please make a selection')
-        self.createRightSubHeading('Previous Page: Main menu')
+        createLeftSubHeading(self, 'Please make a selection')
+        createRightSubHeading(self, 'Previous Page: Main menu')
 
         #buttons/frame to select which application to Scrape
         self.createButtonFrame()
