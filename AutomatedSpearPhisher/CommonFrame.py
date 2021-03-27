@@ -1,4 +1,6 @@
-from tkinter import Frame, PhotoImage, Label
+from tkinter import Frame, PhotoImage, Label, Button
+from functools import partial
+from warnings import warn
 import time
 
 # Common Frame with header and footer
@@ -52,16 +54,46 @@ class CommonFrame(Frame):
         heading_label.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
 
     #frame for buttons
-    def createAndGetButtonFrame(self):
-        button_frame = Frame(self,bg='#80c1ff')
-        button_frame.pack(fill='both', expand=True)
-        return button_frame
+    def createButtonFrame(self):
+        self.button_frame = Frame(self,bg='#80c1ff')
+        self.button_frame.pack(fill='both', expand=True)
+        self.button_row = 0
+        self.button_col=0
 
-    def createPictureInFrame(self, button_frame, image_path):
+    def createPictureInFrame(self, image_path):
         image = PhotoImage (file=image_path)
-        image_label = Label(button_frame, image=image)
+        image_label = Label(self.button_frame, image=image)
         image_label.place(relx=0.6, rely=0)
         image_label.image = image
 
-   
+    def changePages(self, page_name):
+        self.controller.show_frame(page_name)
+
+    def getButtonFrame(self):
+        # make sure button frame exists 
+        try:
+            self.button_frame
+        except NameError:
+            self.createButtonFrame()
+            warn("Main button frame did not exist... Manually creating button frame")
+        return self.button_frame
+
+    # add button to main button frame - and got to new row 
+    def autoAddButton(self, button_text, button_command, style='raised', 
+                      borderwidth=3, width=50,height=5):
+        button_frame = self.getButtonFrame()
+        button = Button(button_frame, text=button_text, command=button_command,
+                        relief=style,borderwidth=borderwidth, width=width,height=height)
+        button.grid (row=self.button_row,column=self.button_col, pady=5)
+        self.button_row+=1
+
+    def setButtonRow(row: int):
+        self.button_row = row
+
+    def setButtonCol(col: int):
+        self.button_col = col
+
+    def createChangePageButton(self, page_name, button_text):
+        change_page_func = partial(self.changePages, page_name)
+        self.autoAddButton(button_text, change_page_func)
         

@@ -1,4 +1,6 @@
 from tkinter import Label, Button, Frame, Entry
+from tweetGenerator import createCorpus
+from tweetGenerator import generateResponse
 from CommonFrame import CommonFrame
 
 #-------------------------------------------Twitter page----------------------------------------------
@@ -7,18 +9,19 @@ class TwitterPage(CommonFrame):
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent)           
-        super().setSubHeading('Twitter')
+        self.setSubHeading('Twitter')
 
         #subheadings
         #twitter selection path
-        super().createLeftSubHeading('Please enter fields')
-        super().createRightSubHeading('Previous Page: Main menu')
+        self.createLeftSubHeading('Please enter fields')
+        self.createRightSubHeading('Previous Page: Main menu')
 
         #frame for buttons
-        button_frame = super().createAndGetButtonFrame()
+        self.createButtonFrame()
+        button_frame = self.button_frame
 
         #twitter symbol
-        super().createPictureInFrame(button_frame, 'images/twitter.png')
+        self.createPictureInFrame('images/twitter.png')
 
         #function to pass to Ashraf's scripts
         def send_twitter_handle (twitter_handle_entry):

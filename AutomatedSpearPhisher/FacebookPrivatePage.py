@@ -1,23 +1,25 @@
-from tkinter import Label, Button, Frame, Entry
+from tkinter import Label, Button, Entry
 from CommonFrame import CommonFrame
+from config import pathToTorInstallation
 
 class FacebookPrivatePage(CommonFrame):
 
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent)
-        super().setSubHeading('Private Facebook')
+        self.setSubHeading('Private Facebook')
 
         #subheadings
         #Facebook selection path
-        super().createLeftSubHeading('Please enter fields')
-        super().createRightSubHeading('Previous Page: Facebook')
+        self.createLeftSubHeading('Please enter fields')
+        self.createRightSubHeading('Previous Page: Facebook')
 
         #frame for buttons/entry fields
-        button_frame = super().createAndGetButtonFrame()
+        self.createButtonFrame()
+        button_frame = self.button_frame
 
         #Facebook symbol
-        super().createPictureInFrame(button_frame, 'images/facebook.png')
+        self.createPictureInFrame('images/facebook.png')
 
         #function to pass arguments to Ashraf's scripts
         def send_facebook_quad(facebook_email_entry, facebook_username_entry, facebook_password_entry, facebook_numberOfFriends_entry):
