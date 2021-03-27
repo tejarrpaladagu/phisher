@@ -1,4 +1,4 @@
-from tkinter import PhotoImage, Label, Button, Frame, Entry
+from tkinter import Label, Button, Frame, Entry
 from CommonFrame import CommonFrame
 
 class FacebookPrivatePage(CommonFrame):
@@ -17,14 +17,10 @@ class FacebookPrivatePage(CommonFrame):
         path_label_facebook.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
 
         #frame for buttons/entry fields
-        button_frame = Frame(self,bg='#80c1ff')
-        button_frame.pack(fill='both', expand=True)
+        button_frame = super().createAndGetButtonFrame()
 
         #Facebook symbol
-        facebook_image = PhotoImage (file='images/facebook.png')
-        facebook_label = Label(button_frame, image=facebook_image)
-        facebook_label.place(relx=0.6, rely=0)
-        facebook_label.image = facebook_image
+        super().createPictureInFrame(button_frame, 'images/facebook.png')
 
         #function to pass arguments to Ashraf's scripts
         def send_facebook_quad(facebook_email_entry, facebook_username_entry, facebook_password_entry, facebook_numberOfFriends_entry):

@@ -1,4 +1,4 @@
-from tkinter import PhotoImage, Label, Button, Frame, Entry
+from tkinter import Label, Button, Frame, Entry
 from CommonFrame import CommonFrame
 
 #-------------------------------------------Twitter page----------------------------------------------
@@ -18,14 +18,10 @@ class TwitterPage(CommonFrame):
         path_label_twitter.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
 
         #frame for buttons
-        button_frame = Frame(self,bg='#80c1ff')
-        button_frame.pack(fill='both', expand=True)
+        button_frame = super().createAndGetButtonFrame()
 
         #twitter symbol
-        twitter_image = PhotoImage (file='images/twitter.png')
-        twitter_label = Label(button_frame, image=twitter_image)
-        twitter_label.place(relx=0.6, rely=0)
-        twitter_label.image = twitter_image
+        super().createPictureInFrame(button_frame, 'images/twitter.png')
 
         #function to pass to Ashraf's scripts
         def send_twitter_handle (twitter_handle_entry):

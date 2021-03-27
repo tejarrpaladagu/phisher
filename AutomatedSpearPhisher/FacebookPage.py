@@ -1,4 +1,4 @@
-from tkinter import PhotoImage, Label, Button, Frame
+from tkinter import Label, Button, Frame
 from CommonFrame import CommonFrame
 
 # Page for Facebook selection
@@ -18,14 +18,10 @@ class FacebookPage(CommonFrame):
 
 
         #buttons/frame to select which application to Scrape
-        button_frame = Frame(self,bg='#80c1ff')
-        button_frame.pack(fill='both', expand=True)
+        button_frame = super().createAndGetButtonFrame()
 
         #Facebook symbol
-        facebook_image = PhotoImage (file='images/facebook.png')
-        facebook_label = Label(button_frame, image=facebook_image)
-        facebook_label.place(relx=0.6, rely=0)
-        facebook_label.image = facebook_image
+        super().createPictureInFrame(button_frame, 'images/facebook.png')
 
         #buttons for Facebook public/private
         def scrape_public_facebook():

@@ -1,4 +1,4 @@
-from tkinter import PhotoImage, Label, Button, Frame
+from tkinter import Label, Button, Frame
 from CommonFrame import CommonFrame
 
 #-------------------------------------------Selection--------------------------------------------------
@@ -13,14 +13,10 @@ class MenuPage(CommonFrame):
         selection_label.pack(fill='x')
 
         #buttons/frame to select which application to Scrape
-        button_frame = Frame(self,bg='#80c1ff')
-        button_frame.pack(fill='both', expand=True)
+        button_frame = super().createAndGetButtonFrame()
 
         #spear fish symbol
-        fish_image = PhotoImage (file='images/fish.png')
-        fish_label = Label(button_frame, image=fish_image)
-        fish_label.place(relx=0.6, rely=0)
-        fish_label.image = fish_image
+        super().createPictureInFrame(button_frame, 'images/fish.png')
 
         #facebook
         def scrape_Facebook():

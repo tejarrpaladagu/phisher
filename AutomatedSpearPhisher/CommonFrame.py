@@ -42,4 +42,17 @@ class CommonFrame(Frame):
     def setSubHeading(self, sub_heading):
         sub_heading_label = Label(self, text=sub_heading, font=('orbitron', 13), fg='white', bg='#0077e6' )
         sub_heading_label.pack()
+
+    #frame for buttons
+    def createAndGetButtonFrame(self):
+        button_frame = Frame(self,bg='#80c1ff')
+        button_frame.pack(fill='both', expand=True)
+        return button_frame
+
+    def createPictureInFrame(self, button_frame, image_path):
+        image = PhotoImage (file=image_path)
+        image_label = Label(button_frame, image=image)
+        image_label.place(relx=0.6, rely=0)
+        image_label.image = image
+
         
