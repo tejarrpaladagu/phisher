@@ -2,7 +2,7 @@ from tkinter import Frame, PhotoImage, Label, Button, Entry
 from functools import partial
 from warnings import warn
 from typing import Callable
-import time
+from time import strftime
 
 # Common Frame with header and footer
 class CommonFrame(Frame):
@@ -38,7 +38,7 @@ class CommonFrame(Frame):
 
     #time bar at the bottom
     def tick(self):
-        current_time = time.strftime('%I:%M %p').lstrip('0').replace(' 0',' ')
+        current_time = strftime('%I:%M %p').lstrip('0').replace(' 0',' ')
         self.time_label.config(text=current_time)
         self.time_label.after(200,self.tick)
 
@@ -76,7 +76,7 @@ class CommonFrame(Frame):
             self.button_frame
         except NameError:
             self.createButtonFrame()
-            warn("WARNING: Main button frame did not exist... Manually creating button frame")
+            warn('WARNING: Main button frame did not exist... Manually creating button frame')
         return self.button_frame
 
     def createButton(self, button_frame: Frame, text: str, command: Callable[[], None], 
@@ -127,7 +127,7 @@ class CommonFrame(Frame):
             self.entry_dict
         except NameError:
             self.setUpEntryGrid(0, 0)
-            warn("WARNING: Entry field was not initialized... initializing row to 0 and column to 0")
+            warn('WARNING: Entry field was not initialized... initializing row to 0 and column to 0')
         return self.entry_dict
 
     # create dictionary and get 
@@ -147,5 +147,5 @@ class CommonFrame(Frame):
         self.checkForEntryInitialization()
         if entry_label in self.entry_dict:
             return self.entry_dict[entry_label].get()
-        warn(f"WARNING: value '{entry_label}' does not exist")
+        warn(f'WARNING: value "{entry_label}" does not exist')
         return ''

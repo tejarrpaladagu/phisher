@@ -27,12 +27,11 @@ class FacebookPublicPage(CommonFrame):
         #create entry fields and their label
         self.setUpLabelGrid(start_row=1, start_col=0)
         self.setUpEntryGrid(start_row=1, start_col=1)
-        self.addLabelWithEntry('URL of friend to Scrape:', "facebook_url_entry")
-        self.addLabelWithEntry('visible/invisible :', "facebook_visibility_entry")
+        self.addLabelWithEntry('URL of friend to Scrape:', 'facebook_url_entry')
+        self.addLabelWithEntry('visible/invisible :', 'facebook_visibility_entry')
 
         #send button
-        self.createButton(button_frame, text='Enter', command=self.send_facebook_url, 
-                            row=3,col=1)
+        self.createButton(button_frame, text='Enter', command=self.send_facebook_url, row=3, col=1)
 
         # back button
         back = self.getPageChangeFunction('FacebookPage')
@@ -40,15 +39,15 @@ class FacebookPublicPage(CommonFrame):
 
     #TODO: function to pass arguments to Ashraf's scripts
     def send_facebook_url(self):
-        facebook_url_entry = self.getValueOfEntry("facebook_url_entry")
-        facebook_visibility_entry = self.getValueOfEntry("facebook_visibility_entry")
+        facebook_url_entry = self.getValueOfEntry('facebook_url_entry')
+        facebook_visibility_entry = self.getValueOfEntry('facebook_visibility_entry')
 
         if facebook_url_entry =='' or facebook_visibility_entry =='':
             self.field_warning_label['text']='*Please fill all fields*'
         else:
             print (facebook_url_entry)
             print (facebook_visibility_entry)
-            print("NOT SENDING ARGUMENTS TO PUBLIC scraper")
+            print('NOT SENDING ARGUMENTS TO PUBLIC scraper')
             self.changePages('FacebookPage')
 
     def createFieldWarning(self):

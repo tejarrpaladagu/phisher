@@ -5,7 +5,6 @@ from CommonFrame import CommonFrame
 
 #-------------------------------------------Twitter page----------------------------------------------
 class TwitterPage(CommonFrame):
-
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent)           

@@ -15,7 +15,7 @@ class LoginPage(CommonFrame):
 
     # change the title in the window and add an icon
     def setWindowsAttribute(self):
-        self.controller.title ("Spear Phishing Tool")
+        self.controller.title ('Spear Phishing Tool')
         self.controller.state ('normal')
         self.controller.iconphoto (False, PhotoImage (file='images/scraper.png'))
 
@@ -28,7 +28,7 @@ class LoginPage(CommonFrame):
         password_label.pack(pady=10)
 
         self.my_password = StringVar()
-        password_entry_box = Entry(self, show="*", textvariable=self.my_password,font=('orbitron', 12), width=22)
+        password_entry_box = Entry(self, show='*', textvariable=self.my_password,font=('orbitron', 12), width=22)
         password_entry_box.focus_set()
         password_entry_box.pack(ipady=7)
 

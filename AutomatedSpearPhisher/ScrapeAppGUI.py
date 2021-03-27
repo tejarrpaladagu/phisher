@@ -19,7 +19,7 @@ class AutomatedSpearPhisherApp(Tk):
             will be raised above the others
         '''
         container = Frame(self)
-        container.pack(side="top", fill="both", expand=True)
+        container.pack(side='top', fill='both', expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
@@ -33,15 +33,15 @@ class AutomatedSpearPhisherApp(Tk):
                 the one on the top of the stacking order
                 will be the one that is visible.
             '''
-            frame.grid(row=0, column=0, sticky="nsew")
+            frame.grid(row=0, column=0, sticky='nsew')
 
-        self.show_frame("LoginPage")
+        self.show_frame('LoginPage')
 
     def show_frame(self, page_name):
         # Show a frame for the given page name
         frame = self.frames[page_name]
         frame.tkraise()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = AutomatedSpearPhisherApp()
     app.mainloop()
