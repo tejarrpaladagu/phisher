@@ -2,6 +2,7 @@ from tkinter import Label, Button, Frame, Entry
 from tweetGenerator import createCorpusForUser
 from tweetGenerator import generateTweet
 from CommonFrame import CommonFrame
+from helpers import createFieldWarning
 
 #-------------------------------------------Twitter page----------------------------------------------
 class TwitterPage(CommonFrame):
@@ -21,33 +22,29 @@ class TwitterPage(CommonFrame):
 
         #twitter symbol
         self.createPictureInFrame('images/twitter.png')
-
-        #function to pass to Ashraf's scripts
-        def send_twitter_handle (twitter_handle_entry):
-            if twitter_handle_entry =='':
-                field_warning_label['text']='*Please fill all fields*'
-            else:
-                #call tweet generator
-                createCorpusForUser (twitter_handle_entry)
-                generateTweet (twitter_handle_entry, 'example.com')
-
-                #print(twitter_handle_entry)
-                controller.show_frame('MenuPage')
-
-        field_warning_label = Label (button_frame,text='',font=('orbitron', 13),fg='white', bg='#80c1ff', anchor='n')
-        field_warning_label.grid(row=2,column=1,pady=5, ipady=20)
+        self.field_warning_label = createFieldWarning(button_frame, row=2, col=1)
 
         #entry fields
-        twitter_handle_label = Label(button_frame, text='Twitter handle of account:', font=('orbitron', 15), fg='white', bg='#80c1ff',anchor='w' )
-        twitter_handle_label.place(relx=0.04, rely=0, relwidth=0.25, relheight=0.1)
-
-        twitter_handle_entry = Entry(button_frame, width=59)
-        twitter_handle_entry.grid (row=0,column=1,pady=5, ipady=20)
+        self.setUpLabelGrid(start_row=0, start_col=0)
+        self.setUpEntryGrid(start_row=0, start_col=1)
+        self.addLabelWithEntry('Twitter handle of account:', 'twitter_handle_entry')
 
         #send button
-        send_button = Button(button_frame, text='Enter', command= lambda:send_twitter_handle(twitter_handle_entry.get()) , relief='raised',borderwidth=3, width=50,height=5)
-        send_button.grid (row=1,column=1, pady=5)
+        self.createButton(button_frame, text='Enter', command=self.send_twitter_handle, row=1, col=1)
 
         #back button
         back = self.getPageChangeFunction('MenuPage')
         self.createButton(button_frame, text='Back', command=back, row=2,col=0)
+
+    #function to pass to Ashraf's scripts
+    def send_twitter_handle (self):
+        twitter_handle_entry = self.getValueOfEntry('twitter_handle_entry')
+        if twitter_handle_entry =='':
+            self.field_warning_label['text']='*Please fill all fields*'
+        else:
+            #call tweet generator
+            createCorpusForUser (twitter_handle_entry)
+            generateTweet (twitter_handle_entry, 'example.com')
+
+            #print(twitter_handle_entry)
+            controller.show_frame('MenuPage')
