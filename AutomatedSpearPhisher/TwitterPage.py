@@ -47,4 +47,4 @@ class TwitterPage(CommonFrame):
             generateTweet (twitter_handle_entry, 'example.com')
 
             #print(twitter_handle_entry)
-            controller.show_frame('MenuPage')
+            self.changePages('MenuPage')

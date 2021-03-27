@@ -2,4 +2,5 @@ git+https://github.com/Aarif123456/tweetGenerator#egg=tweetGenerator
 git+https://github.com/AshrafTaifour/Private-Facebook-Scraper#egg=FacebookChatPhisher
 git+https://github.com/Aarif123456/FacebookPost#egg=FacebookPost
 git+https://github.com/mohamadelchami/textGenerator#egg=phishingTextGenerator
+git+https://github.com/Aarif123456/twint.git#egg=twint
 bcrypt==3.2.0
