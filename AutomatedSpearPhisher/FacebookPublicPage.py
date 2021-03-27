@@ -3,6 +3,7 @@ from CommonFrame import CommonFrame
 # TODO: add face book public scraper
 # TODO: make sure posting works on public scraper as well 
 from FacebookPost import post
+from helpers import createFieldWarning
 
 class FacebookPublicPage(CommonFrame):
     def __init__(self, parent, controller):
@@ -22,7 +23,7 @@ class FacebookPublicPage(CommonFrame):
         #Facebook symbol
         self.createPictureInFrame('images/facebook.png')
         #create field that will show warnings 
-        self.createFieldWarning()
+        self.field_warning_label = createFieldWarning(button_frame, row=4, col=1)
 
         #create entry fields and their label
         self.setUpLabelGrid(start_row=1, start_col=0)
@@ -49,8 +50,3 @@ class FacebookPublicPage(CommonFrame):
             print (facebook_visibility_entry)
             print('NOT SENDING ARGUMENTS TO PUBLIC scraper')
             self.changePages('FacebookPage')
-
-    def createFieldWarning(self):
-        self.field_warning_label = Label (self.button_frame,text='',font=('orbitron', 13),
-                                           fg='white', bg='#80c1ff', anchor='s')
-        self.field_warning_label.grid(row=4,column=1,pady=5, ipady=20)

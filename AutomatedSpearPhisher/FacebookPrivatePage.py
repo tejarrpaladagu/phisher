@@ -6,6 +6,7 @@ from FacebookChatPhisher import *
 from FacebookPost import post
 import phishingTextGenerator 
 from time import sleep
+from helpers import createFieldWarning
 
 class FacebookPrivatePage(CommonFrame):
     def __init__(self, parent, controller):
@@ -26,7 +27,7 @@ class FacebookPrivatePage(CommonFrame):
         self.createPictureInFrame('images/facebook.png')
 
         #warning symbol if any field missing
-        self.createFieldWarning()
+        self.field_warning_label = createFieldWarning(button_frame, row=6, col=1)
         self.setUpLabelGrid(start_row=1, start_col=0)
         self.setUpEntryGrid(start_row=1, start_col=1)
         self.addLabelWithEntry('Email used for Facebook:', 'facebook_email_entry')
@@ -40,11 +41,6 @@ class FacebookPrivatePage(CommonFrame):
         #back button
         back = self.getPageChangeFunction('FacebookPage')
         self.createButton(button_frame, text='Back', command=back, row=6,col=0)
-
-    def createFieldWarning(self):
-        self.field_warning_label = Label (self.button_frame,text='',font=('orbitron', 13),
-                                           fg='white', bg='#80c1ff', anchor='s')
-        self.field_warning_label.grid(row=6,column=1,pady=5, ipady=20)
 
     #function to pass arguments to Ashraf's scripts
     def send_facebook_quad(self):
