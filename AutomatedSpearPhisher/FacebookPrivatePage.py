@@ -12,7 +12,6 @@ class FacebookPrivatePage(CommonFrame):
         self.controller = controller
         super().__init__(parent)
         
-
         #subheadings
         self.setSubHeading('Private Facebook')
         #Facebook selection path

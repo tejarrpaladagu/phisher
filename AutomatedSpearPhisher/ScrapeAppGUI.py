@@ -42,8 +42,6 @@ class AutomatedSpearPhisherApp(Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-
-#------------------------------------------End of Pages----------------------------------------------------
 if __name__ == "__main__":
     app = AutomatedSpearPhisherApp()
     app.mainloop()
