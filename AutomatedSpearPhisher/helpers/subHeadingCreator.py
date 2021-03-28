@@ -10,4 +10,4 @@ def createLeftSubHeading(frame: Frame, sub_heading: str):
 
 def createRightSubHeading(frame: Frame, sub_heading: str):
     heading_label = Label(frame, text=sub_heading, font=('orbitron', 15), fg='white', bg='#0077e6', anchor='e' )
-    heading_label.place(relx=0.75, rely=0.13, relwidth=0.25, relheight=0.15)
+    heading_label.place(relx=0.75, rely=0.12, relwidth=0.25, relheight=0.15)

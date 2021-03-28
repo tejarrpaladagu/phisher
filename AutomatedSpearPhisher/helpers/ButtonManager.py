@@ -15,10 +15,10 @@ class ButtonManager:
         self.button_col=0
 
     def createButton(self, button_frame: Frame, text: str, command: Callable[[], None], 
-                   row: int, col: int, style='raised', borderwidth=3, width=50,height=5):
+                   row: int, col: int, style='raised', borderwidth=3, width=50,height=5, sticky=''):
         button = Button(button_frame, text=text, command=command,
                         relief=style,borderwidth=borderwidth, width=width,height=height)
-        button.grid (row=row,column=col, pady=5)
+        button.grid (row=row,column=col, pady=5, sticky=sticky)
     
     # add button to main button frame - and go to new row 
     def autoAddButton(self, text: str, command : Callable[[], None], style='raised', 
