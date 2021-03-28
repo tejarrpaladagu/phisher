@@ -24,7 +24,7 @@ class FacebookPrivatePage(CommonFrame):
         button_frame = self.getButtonFrame()
 
         #Facebook symbol
-        self.createPictureInFrame('images/facebook.png')
+        createPictureInFrame(button_frame, 'images/facebook.png')
 
         #warning symbol if any field missing
         self.field_warning_label = createFieldWarning(button_frame, row=6, col=1)

@@ -49,12 +49,6 @@ class CommonFrame(Frame):
         self.button_row = 0
         self.button_col=0
 
-    def createPictureInFrame(self, image_path: str):
-        image = PhotoImage (file=image_path)
-        image_label = Label(self.button_frame, image=image)
-        image_label.place(relx=0.6, rely=0)
-        image_label.image = image
-
     def changePages(self, page_name: str):
         self.controller.show_frame(page_name)
 

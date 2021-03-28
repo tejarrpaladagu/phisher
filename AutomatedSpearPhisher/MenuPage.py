@@ -11,8 +11,10 @@ class MenuPage(CommonFrame):
         createLeftSubHeading(self, 'Please make a selection')
         #buttons/frame to select which application to Scrape
         self.createButtonFrame()
+        button_frame = self.getButtonFrame()
+        
         #spear fish symbol
-        self.createPictureInFrame('images/fish.png')
+        createPictureInFrame(button_frame, 'images/fish.png')
 
         # create selection button to go to pages
         self.createChangePageButton('FacebookPage', 'Scrape Facebook')

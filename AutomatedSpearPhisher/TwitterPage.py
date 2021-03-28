@@ -21,7 +21,7 @@ class TwitterPage(CommonFrame):
         button_frame = self.getButtonFrame()
 
         #twitter symbol
-        self.createPictureInFrame('images/twitter.png')
+        createPictureInFrame(button_frame, 'images/twitter.png')
         self.field_warning_label = createFieldWarning(button_frame, row=2, col=1)
 
         #entry fields

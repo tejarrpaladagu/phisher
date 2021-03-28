@@ -21,7 +21,7 @@ class FacebookPublicPage(CommonFrame):
         button_frame = self.getButtonFrame()
 
         #Facebook symbol
-        self.createPictureInFrame('images/facebook.png')
+        createPictureInFrame(button_frame, 'images/facebook.png')
         #create field that will show warnings 
         self.field_warning_label = createFieldWarning(button_frame, row=4, col=1)
 
