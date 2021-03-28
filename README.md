@@ -20,8 +20,8 @@ Program has been tested on Linux
 * Extract TorFolder to program directory
 2. Recommended step: use virtual environment
 ```
-python3 -m venv facebookEnv
-source facebookEnv/bin/activate
+python3 -m venv env
+source env/bin/activate
 ```
 4. Install dependencies 
 `pip3 install -r requirements.txt`
@@ -29,9 +29,9 @@ source facebookEnv/bin/activate
 5. Run program
     `python3 ScrapeAppGUI.py`
 
-## troubleshooting
+## Troubleshooting
 If you are running on a python version that doesn't have tkinter installed
-please run 
+please run \ 
 `apt-get install python3-tk`
 
 ## Importance
@@ -44,4 +44,21 @@ Most malware comes from email. However, there is a rising trend for phishing att
 Rather than creating a defensive tool like a phishing detector using machine learning, we have created an offensive tool. This is because when people are trying to break things, they look for the easiest ways to get the job done. The principle of easiest penetration states that a security system is as strong as its weakest link. So by thinking like an attacker, we can become better defenders.
 
 Furthermore, we wanted to show how easy it is to scale our attack by using libraries like PySpark. This because for each user we only need a limited amount of tweets to generate believable tweets. However the challenge comes from having to deal with millions of users, since most users won't fall for the phishing attack. However, we can easily parallelize the training of our model by creating one worker per user. 
+
+## Related Repository
+These are other repository used in the project
+Private Facebook Scrape: https://github.com/AshrafTaifour/Private-Facebook-Scraper
+
+Public Facebook Scraper: https://github.com/AshrafTaifour/public-Facebook-Scraper
+
+Facebook Poster: https://github.com/Aarif123456/FacebookPost
+
+Phishing Message Generator: https://github.com/mohamadelchami/textGenerator
+
+Malicious Website: https://github.com/Steve-Pham/UserClicks (website link: https://steve-pham.github.io/UserClicks/)
+
+Twitter Phisher: https://github.com/Aarif123456/tweetGenerator
+
+
+
 
