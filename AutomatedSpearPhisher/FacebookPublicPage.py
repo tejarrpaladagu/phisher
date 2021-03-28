@@ -19,7 +19,7 @@ class FacebookPublicPage(CommonFrame):
         #frame for buttons
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        button_manager = ButtonManager(button_frame, controller)
+        button_manager = ButtonManager(button_frame, self.changePages)
         
         #Facebook symbol
         createPictureInFrame(button_frame, 'images/facebook.png')
@@ -27,10 +27,9 @@ class FacebookPublicPage(CommonFrame):
         self.field_warning_label = createFieldWarning(button_frame, row=4, col=1)
 
         #create entry fields and their label
-        self.setUpLabelGrid(start_row=1, start_col=0)
-        self.setUpEntryGrid(start_row=1, start_col=1)
-        self.addLabelWithEntry('URL of friend to Scrape:', 'facebook_url_entry')
-        self.addLabelWithEntry('visible/invisible :', 'facebook_visibility_entry')
+        self.entry_manager = EntryManager(button_frame, start_row=1, label_col=0, entry_col=1)
+        self.entry_manager.addLabelWithEntry('URL of friend to Scrape:', 'facebook_url_entry')
+        self.entry_manager.addLabelWithEntry('visible/invisible :', 'facebook_visibility_entry')
 
         #send button
         button_manager.createButton(button_frame, text='Enter', command=self.send_facebook_url, row=3, col=1)
@@ -40,8 +39,9 @@ class FacebookPublicPage(CommonFrame):
 
     #TODO: function to pass arguments to Ashraf's scripts
     def send_facebook_url(self):
-        facebook_url_entry = self.getValueOfEntry('facebook_url_entry')
-        facebook_visibility_entry = self.getValueOfEntry('facebook_visibility_entry')
+        entry_manager = self.entry_manager
+        facebook_url_entry = entry_manager.getValueOfEntry('facebook_url_entry')
+        facebook_visibility_entry = entry_manager.getValueOfEntry('facebook_visibility_entry')
 
         if facebook_url_entry =='' or facebook_visibility_entry =='':
             self.field_warning_label['text']='*Please fill all fields*'

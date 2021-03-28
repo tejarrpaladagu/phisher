@@ -12,7 +12,7 @@ class MenuPage(CommonFrame):
         #buttons/frame to select which application to Scrape
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        button_manager = ButtonManager(button_frame, controller)
+        button_manager = ButtonManager(button_frame, self.changePages)
         
         #spear fish symbol
         createPictureInFrame(button_frame, 'images/fish.png')

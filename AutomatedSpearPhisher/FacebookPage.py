@@ -16,7 +16,7 @@ class FacebookPage(CommonFrame):
         #buttons/frame to select which application to Scrape
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        button_manager = ButtonManager(button_frame, controller)
+        button_manager = ButtonManager(button_frame, self.changePages)
 
         #Facebook symbol
         createPictureInFrame(button_frame, 'images/facebook.png')

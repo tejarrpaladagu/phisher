@@ -19,16 +19,15 @@ class TwitterPage(CommonFrame):
         #frame for buttons
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        button_manager = ButtonManager(button_frame, controller)
+        button_manager = ButtonManager(button_frame, self.changePages)
 
         #twitter symbol
         createPictureInFrame(button_frame, 'images/twitter.png')
         self.field_warning_label = createFieldWarning(button_frame, row=2, col=1)
 
         #entry fields
-        self.setUpLabelGrid(start_row=0, start_col=0)
-        self.setUpEntryGrid(start_row=0, start_col=1)
-        self.addLabelWithEntry('Twitter handle of account:', 'twitter_handle_entry')
+        self.entry_manager = EntryManager(button_frame, start_row=0, label_col=0, entry_col=1)
+        self.entry_manager.addLabelWithEntry('Twitter handle of account:', 'twitter_handle_entry')
 
         #send button
         button_manager.createButton(button_frame, text='Enter', command=self.send_twitter_handle, row=1, col=1)
@@ -38,7 +37,8 @@ class TwitterPage(CommonFrame):
 
     #function to pass to Ashraf's scripts
     def send_twitter_handle (self):
-        twitter_handle_entry = self.getValueOfEntry('twitter_handle_entry')
+        entry_manager = self.entry_manager
+        twitter_handle_entry = entry_manager.getValueOfEntry('twitter_handle_entry')
         if twitter_handle_entry =='':
             self.field_warning_label['text']='*Please fill all fields*'
         else:

@@ -5,10 +5,10 @@ from functools import partial
 # Handles creation of button to a given - allows button to be added automatically and increment row
 # Also simplifies page changing
 class ButtonManager:
-    def __init__(self, button_frame, controller):
+    def __init__(self, button_frame: Frame, changePages: Callable[[Frame, str], None]):
         if button_frame==None:
             raise ValueError
-        self.controller = controller
+        self.changePages = changePages
         self.button_frame = button_frame
         # used to automatically insert buttons
         self.button_row = 0
@@ -27,9 +27,6 @@ class ButtonManager:
         self.createButton(button_frame, text, command, self.button_row, 
                        self.button_col, style, borderwidth, width, height)
         self.button_row+=1
-
-    def changePages(self, page_name: str):
-        self.controller.show_frame(page_name)
 
     # page changing functions 
     def getPageChangeFunction(self, page_name: str) -> Callable[[], None]:

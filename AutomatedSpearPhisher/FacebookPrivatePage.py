@@ -22,19 +22,18 @@ class FacebookPrivatePage(CommonFrame):
         #frame for buttons/entry fields
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        button_manager = ButtonManager(button_frame, controller)
+        button_manager = ButtonManager(button_frame, self.changePages)
 
         #Facebook symbol
         createPictureInFrame(button_frame, 'images/facebook.png')
 
         #warning symbol if any field missing
         self.field_warning_label = createFieldWarning(button_frame, row=6, col=1)
-        self.setUpLabelGrid(start_row=1, start_col=0)
-        self.setUpEntryGrid(start_row=1, start_col=1)
-        self.addLabelWithEntry('Email used for Facebook:', 'facebook_email_entry')
-        self.addLabelWithEntry('Facebook username:', 'facebook_username_entry')
-        self.addLabelWithEntry('Facebook Password:', 'facebook_password_entry')
-        self.addLabelWithEntry('Number of friends:', 'facebook_numberOfFriends_entry')
+        self.entry_manager = EntryManager(button_frame, start_row=1, label_col=0, entry_col=1)
+        self.entry_manager.addLabelWithEntry('Email used for Facebook:', 'facebook_email_entry')
+        self.entry_manager.addLabelWithEntry('Facebook username:', 'facebook_username_entry')
+        self.entry_manager.addLabelWithEntry('Facebook Password:', 'facebook_password_entry')
+        self.entry_manager.addLabelWithEntry('Number of friends:', 'facebook_numberOfFriends_entry')
 
         #send button
         button_manager.createButton(button_frame, text='Enter', command=self.send_facebook_quad, row=5, col=1)
@@ -44,10 +43,11 @@ class FacebookPrivatePage(CommonFrame):
 
     #function to pass arguments to Ashraf's scripts
     def send_facebook_quad(self):
-        facebook_email_entry = self.getValueOfEntry('facebook_email_entry')
-        facebook_username_entry = self.getValueOfEntry('facebook_username_entry')
-        facebook_password_entry = self.getValueOfEntry('facebook_password_entry')
-        facebook_numberOfFriends_entry = self.getValueOfEntry('facebook_numberOfFriends_entry')
+        entry_manager = self.entry_manager
+        facebook_email_entry = entry_manager.getValueOfEntry('facebook_email_entry')
+        facebook_username_entry = entry_manager.getValueOfEntry('facebook_username_entry')
+        facebook_password_entry = entry_manager.getValueOfEntry('facebook_password_entry')
+        facebook_numberOfFriends_entry = entry_manager.getValueOfEntry('facebook_numberOfFriends_entry')
 
         if facebook_email_entry =='' or facebook_username_entry ==''\
             or facebook_password_entry =='' or facebook_numberOfFriends_entry =='' :
