@@ -1,6 +1,7 @@
 from tkinter import Frame, Label, Entry
 from warnings import warn
 
+# Entry manager creates text fields with labels 
 class EntryManager:
     def __init__(self, button_frame: Frame, start_row: int, label_col: int, entry_col: int):
         if button_frame==None:
