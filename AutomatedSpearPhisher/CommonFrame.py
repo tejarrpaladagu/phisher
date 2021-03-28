@@ -1,7 +1,5 @@
-from tkinter import Frame, PhotoImage, Label, Button, Entry
-from functools import partial
+from tkinter import Frame, PhotoImage, Label, Entry
 from warnings import warn
-from typing import Callable
 from time import strftime
 
 # Common Frame with header and footer
@@ -46,11 +44,6 @@ class CommonFrame(Frame):
     def createButtonFrame(self):
         self.button_frame = Frame(self,bg='#80c1ff')
         self.button_frame.pack(fill='both', expand=True)
-        self.button_row = 0
-        self.button_col=0
-
-    def changePages(self, page_name: str):
-        self.controller.show_frame(page_name)
 
     # make sure button frame exists 
     def getButtonFrame(self):
@@ -60,33 +53,6 @@ class CommonFrame(Frame):
             self.createButtonFrame()
             warn('WARNING: Main button frame did not exist... Manually creating button frame')
         return self.button_frame
-
-    def createButton(self, button_frame: Frame, text: str, command: Callable[[], None], 
-                   row: int, col: int, style='raised', borderwidth=3, width=50,height=5):
-        button = Button(button_frame, text=text, command=command,
-                        relief=style,borderwidth=borderwidth, width=width,height=height)
-        button.grid (row=row,column=col, pady=5)
-    
-    # add button to main button frame - and go to new row 
-    def autoAddButton(self, text: str, command : Callable[[], None], style='raised', 
-                      borderwidth=3, width=50,height=5):
-        button_frame = self.getButtonFrame()
-        self.createButton(button_frame, text, command, self.button_row, 
-                       self.button_col, style, borderwidth, width, height)
-        self.button_row+=1
-
-    def setButtonRow(row: int):
-        self.button_row = row
-
-    def setButtonCol(col: int):
-        self.button_col = col
-
-    def getPageChangeFunction(self, page_name: str) -> Callable[[], None]:
-        return partial(self.changePages, page_name)
-
-    def createChangePageButton(self, page_name: str, text: str):
-        change_page_func = self.getPageChangeFunction(page_name)
-        self.autoAddButton(text, change_page_func)
 
     def setUpLabelGrid(self, start_row: int, start_col: int):
         self.label_row = start_row

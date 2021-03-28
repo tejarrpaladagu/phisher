@@ -12,11 +12,12 @@ class MenuPage(CommonFrame):
         #buttons/frame to select which application to Scrape
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
+        button_manager = ButtonManager(button_frame, controller)
         
         #spear fish symbol
         createPictureInFrame(button_frame, 'images/fish.png')
 
         # create selection button to go to pages
-        self.createChangePageButton('FacebookPage', 'Scrape Facebook')
-        self.createChangePageButton('TwitterPage', 'Scrape Twitter')
-        self.createChangePageButton('LoginPage', 'Exit')
+        button_manager.autoCreateChangePageButton('FacebookPage', 'Scrape Facebook')
+        button_manager.autoCreateChangePageButton('TwitterPage', 'Scrape Twitter')
+        button_manager.autoCreateChangePageButton('LoginPage', 'Exit')

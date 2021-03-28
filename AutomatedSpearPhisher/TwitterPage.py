@@ -19,6 +19,7 @@ class TwitterPage(CommonFrame):
         #frame for buttons
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
+        button_manager = ButtonManager(button_frame, controller)
 
         #twitter symbol
         createPictureInFrame(button_frame, 'images/twitter.png')
@@ -30,11 +31,10 @@ class TwitterPage(CommonFrame):
         self.addLabelWithEntry('Twitter handle of account:', 'twitter_handle_entry')
 
         #send button
-        self.createButton(button_frame, text='Enter', command=self.send_twitter_handle, row=1, col=1)
+        button_manager.createButton(button_frame, text='Enter', command=self.send_twitter_handle, row=1, col=1)
 
         #back button
-        back = self.getPageChangeFunction('MenuPage')
-        self.createButton(button_frame, text='Back', command=back, row=2,col=0)
+        button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=2,col=0)
 
     #function to pass to Ashraf's scripts
     def send_twitter_handle (self):

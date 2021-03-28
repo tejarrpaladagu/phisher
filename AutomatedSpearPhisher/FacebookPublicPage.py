@@ -19,7 +19,8 @@ class FacebookPublicPage(CommonFrame):
         #frame for buttons
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-
+        button_manager = ButtonManager(button_frame, controller)
+        
         #Facebook symbol
         createPictureInFrame(button_frame, 'images/facebook.png')
         #create field that will show warnings 
@@ -32,11 +33,10 @@ class FacebookPublicPage(CommonFrame):
         self.addLabelWithEntry('visible/invisible :', 'facebook_visibility_entry')
 
         #send button
-        self.createButton(button_frame, text='Enter', command=self.send_facebook_url, row=3, col=1)
+        button_manager.createButton(button_frame, text='Enter', command=self.send_facebook_url, row=3, col=1)
 
         # back button
-        back = self.getPageChangeFunction('FacebookPage')
-        self.createButton(button_frame, text='Back', command=back, row=4,col=0)
+        button_manager.createChangePageButton(page_name='FacebookPage', text='Back', row=4,col=0)
 
     #TODO: function to pass arguments to Ashraf's scripts
     def send_facebook_url(self):

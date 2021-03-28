@@ -16,11 +16,12 @@ class FacebookPage(CommonFrame):
         #buttons/frame to select which application to Scrape
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        
+        button_manager = ButtonManager(button_frame, controller)
+
         #Facebook symbol
         createPictureInFrame(button_frame, 'images/facebook.png')
 
         # create selection button to go to pages
-        self.createChangePageButton('FacebookPublicPage', 'Public Facebook')
-        self.createChangePageButton('FacebookPrivatePage', 'Private Facebook')
-        self.createChangePageButton('MenuPage', 'Back')
+        button_manager.autoCreateChangePageButton('FacebookPublicPage', 'Public Facebook')
+        button_manager.autoCreateChangePageButton('FacebookPrivatePage', 'Private Facebook')
+        button_manager.autoCreateChangePageButton('MenuPage', 'Back')
