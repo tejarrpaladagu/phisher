@@ -28,9 +28,9 @@ class LoginPage(CommonFrame):
         password_label.pack(pady=10)
 
         self.my_password = StringVar()
-        password_entry_box = Entry(self, show='*', textvariable=self.my_password,font=('orbitron', 12), width=22)
-        password_entry_box.focus_set()
-        password_entry_box.pack(ipady=7)
+        password_box = Entry(self, show='*', textvariable=self.my_password,font=('orbitron', 12), width=22)
+        password_box.focus_set()
+        password_box.pack(ipady=7)
 
     def createSubmitButton(self):
         enter_button = Button(self, text='Enter', command=self.checkPassword, relief='raised', borderwidth=3, width=40, height=3 )

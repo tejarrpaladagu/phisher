@@ -37,7 +37,7 @@ class FacebookPrivatePage(CommonFrame):
         filename = filedialog.askopenfilename(initialdir = "/",
                                               title = "Select a File",
                                               filetypes = ftypes)
-        self.entry_manager.setValueOfEntry('driver_path_entry', filename)
+        self.entry_manager.setValueOfEntry('driver_path', filename)
         
     # add in buttons in the frame
     def addButtons(self, button_frame):
@@ -55,37 +55,37 @@ class FacebookPrivatePage(CommonFrame):
         self.browser_selector.current(0)
 
     def addEnteries(self, entry_manager):
-        entry_manager.addLabelWithEntry('Email used for Facebook:', 'email_entry')
-        entry_manager.addLabelWithEntry('Facebook username:', 'username_entry')
-        entry_manager.addLabelWithEntry('Facebook Password:', 'password_entry')
-        entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends_entry')
-        entry_manager.addLabelWithEntry('Path to driver:', 'driver_path_entry', sticky_label='we')
+        entry_manager.addLabelWithEntry('Email used for Facebook:', 'email')
+        entry_manager.addLabelWithEntry('Facebook username:', 'username')
+        entry_manager.addLabelWithEntry('Facebook Password:', 'password')
+        entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends')
+        entry_manager.addLabelWithEntry('Path to driver:', 'driver_path', sticky_label='we')
 
     #function to pass arguments to Ashraf's scripts
     def scrapePrivateFacebook(self):
         entry_manager = self.entry_manager
-        email_entry = entry_manager.getValueOfEntry('email_entry')
-        username_entry = entry_manager.getValueOfEntry('username_entry')
-        password_entry = entry_manager.getValueOfEntry('password_entry')
-        numberOfFriends_entry = entry_manager.getValueOfEntry('numberOfFriends_entry')
-        driver_path =  entry_manager.getValueOfEntry('driver_path_entry')
+        email = entry_manager.getValueOfEntry('email')
+        username = entry_manager.getValueOfEntry('username')
+        password = entry_manager.getValueOfEntry('password')
+        numberOfFriends = entry_manager.getValueOfEntry('numberOfFriends')
+        driver_path =  entry_manager.getValueOfEntry('driver_path')
         browser_mode = SUPPORTED_BROWSER.get( self.browser_selector.get())
 
-        if email_entry =='' or username_entry ==''\
-            or password_entry =='' or numberOfFriends_entry =='' :
+        if email =='' or username ==''\
+            or password =='' or numberOfFriends =='' :
             self.field_warning_label['text']='*Please fill all fields*'
         else:
             # login to Facebook
             driver = getDriver(driver_path, browser_mode, tor_installation_path)
-            loginToFacebook(driver, email_entry , password_entry)
+            loginToFacebook(driver, email , password)
             sleep(8)
             # get list of friend's pages
-            FULLHTMLPAGE = getFriendsListHTMLPage(driver, username_entry)
+            FULLHTMLPAGE = getFriendsListHTMLPage(driver, username)
             # extract the URL to their page
             friendURLS = parseHTML(FULLHTMLPAGE, 'friendsurls', 1)
             # scrape and store their likes pages
             # TODO: figure out how to store files in output directory
-            scrapeLikePages(driver, friendURLS, int(numberOfFriends_entry))
+            scrapeLikePages(driver, friendURLS, int(numberOfFriends))
             # create phishing text based on created like pages
             # TODO: pass in output and input directory
             phishingTextGenerator.main()

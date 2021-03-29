@@ -32,14 +32,14 @@ class FacebookPublicPage(CommonFrame):
     #TODO: function to pass arguments to Ashraf's scripts
     def send_facebook_url(self):
         entry_manager = self.entry_manager
-        facebook_url_entry = entry_manager.getValueOfEntry('facebook_url_entry')
-        facebook_visibility_entry = entry_manager.getValueOfEntry('facebook_visibility_entry')
+        facebook_url = entry_manager.getValueOfEntry('facebook_url')
+        facebook_visibility = entry_manager.getValueOfEntry('facebook_visibility')
 
-        if facebook_url_entry =='' or facebook_visibility_entry =='':
+        if facebook_url =='' or facebook_visibility =='':
             self.field_warning_label['text']='*Please fill all fields*'
         else:
-            print (facebook_url_entry)
-            print (facebook_visibility_entry)
+            print (facebook_url)
+            print (facebook_visibility)
             print('NOT SENDING ARGUMENTS TO PUBLIC scraper')
             self.changePages('FacebookPage')
     
@@ -51,5 +51,5 @@ class FacebookPublicPage(CommonFrame):
         button_manager.createChangePageButton(page_name='FacebookPage', text='Back', row=4,col=0)
 
     def addEnteries(self, entry_manager):
-        entry_manager.addLabelWithEntry('URL of friend to Scrape:', 'facebook_url_entry')
-        entry_manager.addLabelWithEntry('visible/invisible :', 'facebook_visibility_entry')
+        entry_manager.addLabelWithEntry('URL of friend to Scrape:', 'facebook_url')
+        entry_manager.addLabelWithEntry('visible/invisible :', 'facebook_visibility')

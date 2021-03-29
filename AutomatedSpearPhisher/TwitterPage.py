@@ -31,15 +31,15 @@ class TwitterPage(CommonFrame):
     #function to pass to Ashraf's scripts
     def send_twitter_handle (self):
         entry_manager = self.entry_manager
-        twitter_handle_entry = entry_manager.getValueOfEntry('twitter_handle_entry')
-        if twitter_handle_entry =='':
+        twitter_handle = entry_manager.getValueOfEntry('twitter_handle')
+        if twitter_handle =='':
             self.field_warning_label['text']='*Please fill all fields*'
         else:
             #call tweet generator
-            createCorpusForUser (twitter_handle_entry)
-            generateTweet (twitter_handle_entry, 'example.com')
+            createCorpusForUser (twitter_handle)
+            generateTweet (twitter_handle, 'example.com')
 
-            #print(twitter_handle_entry)
+            #print(twitter_handle)
             self.changePages('MenuPage')
 
     def addButtons(self, button_frame):
@@ -50,4 +50,4 @@ class TwitterPage(CommonFrame):
         button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=2,col=0)
 
     def addEnteries(self, entry_manager):
-        entry_manager.addLabelWithEntry('Twitter handle of account:', 'twitter_handle_entry')
+        entry_manager.addLabelWithEntry('Twitter handle of account:', 'twitter_handle')
