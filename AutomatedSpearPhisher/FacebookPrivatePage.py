@@ -41,7 +41,7 @@ class FacebookPrivatePage(CommonFrame):
     # add in buttons in the frame
     def addButtons(self, button_frame):
         button_manager = ButtonManager(button_frame, self.changePages)
-        button_manager.createButton(button_frame, text='Open', command=self.setFile, row=5, col=0, width=15, height=4)
+        button_manager.createButton(button_frame, text='Open', command=self.setFile, row=5, col=0, width=15, height=3)
         #send button
         button_manager.createButton(button_frame, text='Enter', command=self.scrapePrivateFacebook, row=7, col=1)
         #back button
@@ -49,14 +49,14 @@ class FacebookPrivatePage(CommonFrame):
 
     # drop-down select browser
     def addBrowserSelector(self, button_frame):
-        self.browser_selector = Combobox(button_frame, values=getSupportedBrowser())
+        self.browser_selector = Combobox(button_frame, values=getSupportedBrowser(), width=35,height=15, font=('orbitron', 15))
         self.browser_selector.grid(row=6, column=1)
         self.browser_selector.current(0)
 
     def addEnteries(self, entry_manager):
         entry_manager.addLabelWithEntry('Email used for Facebook:', 'email')
         entry_manager.addLabelWithEntry('Facebook username:', 'username')
-        entry_manager.addLabelWithEntry('Facebook Password:', 'password')
+        entry_manager.addLabelWithEntry('Facebook Password:', 'password', show='*')
         entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends')
         entry_manager.addLabelWithEntry('Path to driver:', 'driver_path', sticky_label='we')
 

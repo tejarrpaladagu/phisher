@@ -21,16 +21,16 @@ class EntryManager:
         self.label_row += 1
 
     # create dictionary and get 
-    def autoAddEntry(self, entry_label, sticky=''):
+    def autoAddEntry(self, entry_label, sticky='', show='', width=59):
         button_frame = self.button_frame
-        entry = Entry(button_frame, width=59)
+        entry = Entry(button_frame, width=width, show=show)
         entry.grid (row=self.entry_row,column=self.entry_col,pady=5, ipady=20, sticky=sticky)
         self.entry_row += 1
         self.entry_dict[entry_label] = entry
 
-    def addLabelWithEntry(self, text: str, entry_label: str,sticky_label='', sticky_entry=''):
+    def addLabelWithEntry(self, text: str, entry_label: str,sticky_label='', sticky_entry='', show=''):
         self.autoAddLabel(text, sticky_label)
-        self.autoAddEntry(entry_label, sticky_entry)
+        self.autoAddEntry(entry_label, sticky_entry, show)
 
     def getValueOfEntry(self, entry_label: str):
         if entry_label in self.entry_dict:
