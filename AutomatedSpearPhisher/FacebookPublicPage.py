@@ -1,4 +1,3 @@
-from tkinter import Label, Button, Entry
 from CommonFrame import CommonFrame
 # TODO: add face book public scraper
 # TODO: make sure posting works on public scraper as well 
@@ -30,7 +29,7 @@ class FacebookPublicPage(CommonFrame):
         self.addEnteries(self.entry_manager)   
 
     #TODO: function to pass arguments to Ashraf's scripts
-    def send_facebook_url(self):
+    def scrapePublicFacebook(self):
         entry_manager = self.entry_manager
         facebook_url = entry_manager.getValueOfEntry('facebook_url')
         facebook_visibility = entry_manager.getValueOfEntry('facebook_visibility')
@@ -46,7 +45,7 @@ class FacebookPublicPage(CommonFrame):
     def addButtons(self, button_frame):
         button_manager = ButtonManager(button_frame, self.changePages)
         #send button
-        button_manager.createButton(button_frame, text='Enter', command=self.send_facebook_url, row=3, col=1)
+        button_manager.createButton(button_frame, text='Enter', command=self.scrapePublicFacebook, row=3, col=1)
         # back button
         button_manager.createChangePageButton(page_name='FacebookPage', text='Back', row=4,col=0)
 

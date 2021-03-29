@@ -1,4 +1,3 @@
-from tkinter import Label, Button, Entry
 from tkinter.ttk import Combobox
 from tkinter import filedialog
 from CommonFrame import CommonFrame

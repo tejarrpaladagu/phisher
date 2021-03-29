@@ -1,4 +1,3 @@
-from tkinter import Label, Button, Frame, Entry
 from tweetGenerator import createCorpusForUser
 from tweetGenerator import generateTweet
 from CommonFrame import CommonFrame
@@ -29,7 +28,7 @@ class TwitterPage(CommonFrame):
         self.addEnteries(self.entry_manager)
 
     #function to pass to Ashraf's scripts
-    def send_twitter_handle (self):
+    def sendTwitterHandle (self):
         entry_manager = self.entry_manager
         twitter_handle = entry_manager.getValueOfEntry('twitter_handle')
         if twitter_handle =='':
@@ -45,7 +44,7 @@ class TwitterPage(CommonFrame):
     def addButtons(self, button_frame):
         button_manager = ButtonManager(button_frame, self.changePages)
         #send button
-        button_manager.createButton(button_frame, text='Enter', command=self.send_twitter_handle, row=1, col=1)
+        button_manager.createButton(button_frame, text='Enter', command=self.sendTwitterHandle, row=1, col=1)
         #back button
         button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=2,col=0)
 
