@@ -19,21 +19,14 @@ class TwitterPage(CommonFrame):
         #frame for buttons
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        button_manager = ButtonManager(button_frame, self.changePages)
-
         #twitter symbol
         createPictureInFrame(button_frame, 'images/twitter.png')
+        self.addButtons(button_frame)
         self.field_warning_label = createFieldWarning(button_frame, row=2, col=1)
 
         #entry fields
         self.entry_manager = EntryManager(button_frame, start_row=0, label_col=0, entry_col=1)
-        self.entry_manager.addLabelWithEntry('Twitter handle of account:', 'twitter_handle_entry')
-
-        #send button
-        button_manager.createButton(button_frame, text='Enter', command=self.send_twitter_handle, row=1, col=1)
-
-        #back button
-        button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=2,col=0)
+        self.addEnteries(self.entry_manager)
 
     #function to pass to Ashraf's scripts
     def send_twitter_handle (self):
@@ -48,3 +41,13 @@ class TwitterPage(CommonFrame):
 
             #print(twitter_handle_entry)
             self.changePages('MenuPage')
+
+    def addButtons(self, button_frame):
+        button_manager = ButtonManager(button_frame, self.changePages)
+        #send button
+        button_manager.createButton(button_frame, text='Enter', command=self.send_twitter_handle, row=1, col=1)
+        #back button
+        button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=2,col=0)
+
+    def addEnteries(self, entry_manager):
+        entry_manager.addLabelWithEntry('Twitter handle of account:', 'twitter_handle_entry')

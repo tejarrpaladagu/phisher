@@ -12,11 +12,13 @@ class MenuPage(CommonFrame):
         #buttons/frame to select which application to Scrape
         self.createButtonFrame()
         button_frame = self.getButtonFrame()
-        button_manager = ButtonManager(button_frame, self.changePages)
-        
         #spear fish symbol
         createPictureInFrame(button_frame, 'images/fish.png')
+        # Add in buttons
+        self.addButtons(button_frame)
 
+    def addButtons(self, button_frame):
+        button_manager = ButtonManager(button_frame, self.changePages)
         # create selection button to go to pages
         button_manager.autoCreateChangePageButton('FacebookPage', 'Scrape Facebook')
         button_manager.autoCreateChangePageButton('TwitterPage', 'Scrape Twitter')
