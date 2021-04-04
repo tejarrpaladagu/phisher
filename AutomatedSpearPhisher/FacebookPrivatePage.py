@@ -1,5 +1,5 @@
 from tkinter.ttk import Combobox
-from tkinter import filedialog
+from tkinter import filedialog, Checkbutton, IntVar
 from CommonFrame import CommonFrame
 from config import tor_installation_path
 from FacebookChatPhisher import *
@@ -29,6 +29,7 @@ class FacebookPrivatePage(CommonFrame):
         self.entry_manager = EntryManager(button_frame, start_row=1, label_col=0, entry_col=1)
         self.addEnteries(self.entry_manager)
         self.addBrowserSelector(button_frame)
+        self.addPostingCheckBox(button_frame)
         self.addButtons(button_frame)
 
     def setFile(self):
@@ -53,12 +54,23 @@ class FacebookPrivatePage(CommonFrame):
         self.browser_selector.grid(row=6, column=1)
         self.browser_selector.current(0)
 
+    def addPostingCheckBox(self, button_frame):
+        self.shouldPost = IntVar()
+        poster_box = Checkbutton(button_frame, text = "Post To Facebook", 
+                                 variable=self.shouldPost)
+        poster_box.grid(row=6, column=0)
+
     def addEnteries(self, entry_manager):
         entry_manager.addLabelWithEntry('Email used for Facebook:', 'email')
         entry_manager.addLabelWithEntry('Facebook username:', 'username')
         entry_manager.addLabelWithEntry('Facebook Password:', 'password', show='*')
-        entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends')
+        # '%P' is value of entry if allowed
+        validateNumber = (entry_manager.register(self.validateNumber), "%P")
+        entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends', validate="all", vcmd=validateNumber)
         entry_manager.addLabelWithEntry('Path to driver:', 'driverPath', sticky_label='we')
+
+    def validateNumber(self, val):
+        return str.isdigit(val) or val == ""
 
     #function to pass arguments to Ashraf's scripts
     def scrapePrivateFacebook(self):
@@ -83,9 +95,21 @@ class FacebookPrivatePage(CommonFrame):
             # get list of friend's pages
             FULLHTMLPAGE = getFriendsListHTMLPage(driver, username)
             # extract the URL to their page
-            friendURLS = parseHTML(FULLHTMLPAGE, 'friendsurls', 1)
+            friendURLS = parseFriendsPage(FULLHTMLPAGE)
             # scrape and store their likes pages
             scrapeLikePages(driver, friendURLS, int(numberOfFriends), inputPath)
             # create phishing text based on created like pages
             phishingTextGenerator.main(inputPath, outputPath)
+            if self.shouldPost.get() == 1:
+                self.postToFacebook(driver, friendURLS, outputPath)
             self.changePages('FacebookPage')
+                
+    def postToFacebook(self, driver, friendURLS: list, outputPath : str):
+        for i in range(len(friendURLS)):
+            friendURL = friendURLS[i]
+            filepath = f"{outputPath}/message{i}.txt"
+            with open(filepath, "r", encoding='utf-8') as f:
+                message = f.read()
+                post(driver, friendURL, message)
+
+

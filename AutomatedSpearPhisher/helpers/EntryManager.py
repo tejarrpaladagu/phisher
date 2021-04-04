@@ -21,16 +21,16 @@ class EntryManager:
         self.label_row += 1
 
     # create dictionary and get 
-    def autoAddEntry(self, entry_label, sticky='', show='', width=59):
+    def autoAddEntry(self, entry_label, sticky='', show='', width=59, vcmd={}, validate="none"):
         button_frame = self.button_frame
-        entry = Entry(button_frame, width=width, show=show)
+        entry = Entry(button_frame, width=width, show=show, validate=validate, validatecommand=vcmd)
         entry.grid (row=self.entry_row,column=self.entry_col,pady=5, ipady=20, sticky=sticky)
         self.entry_row += 1
         self.entry_dict[entry_label] = entry
 
-    def addLabelWithEntry(self, text: str, entry_label: str,sticky_label='', sticky_entry='', show=''):
+    def addLabelWithEntry(self, text: str, entry_label: str,sticky_label='', sticky_entry='', show='', vcmd={}, validate="none"):
         self.autoAddLabel(text, sticky_label)
-        self.autoAddEntry(entry_label, sticky_entry, show)
+        self.autoAddEntry(entry_label, sticky_entry, show, vcmd=vcmd, validate=validate)
 
     def getValueOfEntry(self, entry_label: str):
         if entry_label in self.entry_dict:
@@ -45,3 +45,6 @@ class EntryManager:
             e.insert(0,value)
         else:
             warn(f'WARNING: value "{entry_label}" does not exist')
+
+    def register(self, callback):
+        return (self.button_frame.register(callback))
