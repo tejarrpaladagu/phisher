@@ -36,7 +36,7 @@ class FacebookPrivatePage(CommonFrame):
         filename = filedialog.askopenfilename(initialdir = "/",
                                               title = "Select a File",
                                               filetypes = ftypes)
-        self.entry_manager.setValueOfEntry('driver_path', filename)
+        self.entry_manager.setValueOfEntry('driverPath', filename)
         
     # add in buttons in the frame
     def addButtons(self, button_frame):
@@ -58,7 +58,7 @@ class FacebookPrivatePage(CommonFrame):
         entry_manager.addLabelWithEntry('Facebook username:', 'username')
         entry_manager.addLabelWithEntry('Facebook Password:', 'password', show='*')
         entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends')
-        entry_manager.addLabelWithEntry('Path to driver:', 'driver_path', sticky_label='we')
+        entry_manager.addLabelWithEntry('Path to driver:', 'driverPath', sticky_label='we')
 
     #function to pass arguments to Ashraf's scripts
     def scrapePrivateFacebook(self):
@@ -67,15 +67,17 @@ class FacebookPrivatePage(CommonFrame):
         username = entry_manager.getValueOfEntry('username')
         password = entry_manager.getValueOfEntry('password')
         numberOfFriends = entry_manager.getValueOfEntry('numberOfFriends')
-        driver_path =  entry_manager.getValueOfEntry('driver_path')
-        browser_mode = SUPPORTED_BROWSER.get( self.browser_selector.get())
+        driverPath =  entry_manager.getValueOfEntry('driverPath')
+        browserMode = SUPPORTED_BROWSER.get( self.browser_selector.get())
 
         if email =='' or username ==''\
             or password =='' or numberOfFriends =='' :
             self.field_warning_label['text']='*Please fill all fields*'
         else:
+            inputPath = "Resources/facebook"
+            outputPath = "Output/facebook"
             # login to Facebook
-            driver = getDriver(driver_path, browser_mode, tor_installation_path)
+            driver = getDriver(driverPath, browserMode, tor_installation_path)
             loginToFacebook(driver, email , password)
             sleep(8)
             # get list of friend's pages
@@ -83,9 +85,7 @@ class FacebookPrivatePage(CommonFrame):
             # extract the URL to their page
             friendURLS = parseHTML(FULLHTMLPAGE, 'friendsurls', 1)
             # scrape and store their likes pages
-            # TODO: figure out how to store files in output directory
-            scrapeLikePages(driver, friendURLS, int(numberOfFriends))
+            scrapeLikePages(driver, friendURLS, int(numberOfFriends), inputPath)
             # create phishing text based on created like pages
-            # TODO: pass in output and input directory
-            phishingTextGenerator.main()
+            phishingTextGenerator.main(inputPath, outputPath)
             self.changePages('FacebookPage')
