@@ -3,7 +3,6 @@ from tkinter import filedialog, Checkbutton, IntVar
 from CommonFrame import CommonFrame
 from config import tor_installation_path
 from FacebookChatPhisher import *
-# TODO: add posting option
 from FacebookPost import post
 import phishingTextGenerator 
 from time import sleep
@@ -62,8 +61,8 @@ class FacebookPrivatePage(CommonFrame):
 
     def addEnteries(self, entry_manager):
         entry_manager.addLabelWithEntry('Email used for Facebook:', 'email')
-        entry_manager.addLabelWithEntry('Facebook username:', 'username')
         entry_manager.addLabelWithEntry('Facebook Password:', 'password', show='*')
+        entry_manager.addLabelWithEntry('Target\'s Facebook username:', 'username')
         # '%P' is value of entry if allowed
         validateNumber = (entry_manager.register(self.validateNumber), "%P")
         entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends', validate="all", vcmd=validateNumber)
@@ -76,8 +75,8 @@ class FacebookPrivatePage(CommonFrame):
     def scrapePrivateFacebook(self):
         entry_manager = self.entry_manager
         email = entry_manager.getValueOfEntry('email')
-        username = entry_manager.getValueOfEntry('username')
         password = entry_manager.getValueOfEntry('password')
+        username = entry_manager.getValueOfEntry('username')
         numberOfFriends = entry_manager.getValueOfEntry('numberOfFriends')
         driverPath =  entry_manager.getValueOfEntry('driverPath')
         browserMode = SUPPORTED_BROWSER.get( self.browser_selector.get())
