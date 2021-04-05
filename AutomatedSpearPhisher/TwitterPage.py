@@ -21,7 +21,7 @@ class TwitterPage(CommonFrame):
         #twitter symbol
         createPictureInFrame(button_frame, 'images/twitter.png')
         self.addButtons(button_frame)
-        self.field_warning_label = createFieldWarning(button_frame, row=2, col=1)
+        self.field_warning_label = createFieldWarning(button_frame, row=3, col=1)
 
         #entry fields
         self.entry_manager = EntryManager(button_frame, start_row=0, label_col=0, entry_col=1)
@@ -31,12 +31,13 @@ class TwitterPage(CommonFrame):
     def sendTwitterHandle (self):
         entry_manager = self.entry_manager
         twitter_handle = entry_manager.getValueOfEntry('twitter_handle')
-        if twitter_handle =='':
+        twitter_url = entry_manager.getValueOfEntry('twitter_url')
+        if twitter_handle =='' or twitter_url == '':
             self.field_warning_label['text']='*Please fill all fields*'
         else:
             #call tweet generator
             createCorpusForUser (twitter_handle)
-            generateTweet (twitter_handle, 'example.com')
+            generateTweet (twitter_handle, twitter_url)
 
             #print(twitter_handle)
             self.changePages('MenuPage')
@@ -44,9 +45,10 @@ class TwitterPage(CommonFrame):
     def addButtons(self, button_frame):
         button_manager = ButtonManager(button_frame, self.changePages)
         #send button
-        button_manager.createButton(button_frame, text='Enter', command=self.sendTwitterHandle, row=1, col=1)
+        button_manager.createButton(button_frame, text='Enter', command=self.sendTwitterHandle, row=2, col=1)
         #back button
-        button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=2,col=0)
+        button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=3,col=0)
 
     def addEnteries(self, entry_manager):
         entry_manager.addLabelWithEntry('Twitter handle of account:', 'twitter_handle')
+        entry_manager.addLabelWithEntry('Phishing URL:', 'twitter_url')
