@@ -62,10 +62,10 @@ class FacebookPrivatePage(CommonFrame):
     def addEnteries(self, entry_manager):
         entry_manager.addLabelWithEntry('Email used for Facebook:', 'email')
         entry_manager.addLabelWithEntry('Facebook Password:', 'password', show='*')
-        entry_manager.addLabelWithEntry('Target\'s Facebook username:', 'username')
+        entry_manager.addLabelWithEntry('Your Facebook Username:', 'username')
         # '%P' is value of entry if allowed
         validateNumber = (entry_manager.register(self.validateNumber), "%P")
-        entry_manager.addLabelWithEntry('Number of friends:', 'numberOfFriends', validate="all", vcmd=validateNumber)
+        entry_manager.addLabelWithEntry('Number of Friends to Scrape:', 'numberOfFriends', validate="all", vcmd=validateNumber)
         entry_manager.addLabelWithEntry('Path to driver:', 'driverPath', sticky_label='we')
 
     def validateNumber(self, val):
