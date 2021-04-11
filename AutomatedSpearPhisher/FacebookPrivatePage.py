@@ -63,13 +63,8 @@ class FacebookPrivatePage(CommonFrame):
         entry_manager.addLabelWithEntry('Email used for Facebook:', 'email')
         entry_manager.addLabelWithEntry('Facebook Password:', 'password', show='*')
         entry_manager.addLabelWithEntry('Your Facebook Username:', 'username')
-        # '%P' is value of entry if allowed
-        validateNumber = (entry_manager.register(self.validateNumber), "%P")
-        entry_manager.addLabelWithEntry('Number of Friends to Scrape:', 'numberOfFriends', validate="all", vcmd=validateNumber)
+        entry_manager.addNumericalEntryWithLabel('Number of Friends to Scrape:', 'numberOfFriends')
         entry_manager.addLabelWithEntry('Path to driver:', 'driverPath', sticky_label='we')
-
-    def validateNumber(self, val):
-        return str.isdigit(val) or val == ""
 
     #function to pass arguments to Ashraf's scripts
     def scrapePrivateFacebook(self):

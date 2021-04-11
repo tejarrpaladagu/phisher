@@ -28,9 +28,14 @@ class EntryManager:
         self.entry_row += 1
         self.entry_dict[entry_label] = entry
 
-    def addLabelWithEntry(self, text: str, entry_label: str,sticky_label='', sticky_entry='', show='', vcmd={}, validate="none"):
+    def addLabelWithEntry(self, text: str, entry_label: str, sticky_label='', sticky_entry='', show='', vcmd={}, validate="none"):
         self.autoAddLabel(text, sticky_label)
         self.autoAddEntry(entry_label, sticky_entry, show, vcmd=vcmd, validate=validate)
+
+    def addNumericalEntryWithLabel(self, text: str, entry_label: str, sticky_label='', sticky_entry='', show=''):
+        # '%P' is value of entry if allowed
+        validateNumber = (self.register(self.validateNumber), "%P")
+        self.addLabelWithEntry(text, entry_label, sticky_label, sticky_entry, show, validate="all", vcmd=validateNumber)
 
     def getValueOfEntry(self, entry_label: str):
         if entry_label in self.entry_dict:
@@ -48,3 +53,7 @@ class EntryManager:
 
     def register(self, callback):
         return (self.button_frame.register(callback))
+
+    def validateNumber(self, val):
+        return str.isdigit(val) or val == ""
+
