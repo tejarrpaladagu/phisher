@@ -20,12 +20,13 @@ class TwitterPage(CommonFrame):
         button_frame = self.getButtonFrame()
         #twitter symbol
         createPictureInFrame(button_frame, 'images/twitter.png')
-        self.addButtons(button_frame)
-        self.field_warning_label = createFieldWarning(button_frame, row=6, col=1)
-
         #entry fields
         self.entry_manager = EntryManager(button_frame, start_row=0, label_col=0, entry_col=1)
         self.addEnteries(self.entry_manager)
+        last_entry_row = self.entry_manager.getLastEntryRow()
+        last_button_row = self.addButtons(button_frame, last_entry_row+1)
+        self.field_warning_label = createFieldWarning(button_frame, row=last_button_row, col=1)
+
 
     #function to pass to Ashraf's scripts
     def sendTwitterHandle (self):
@@ -37,8 +38,7 @@ class TwitterPage(CommonFrame):
         tweets_folder = "Resources/tweets"
         gen_tweets_folder = "Output/tweets"
 
-        if twitter_handle =='' or twitter_url == '' or \
-            num_scrape_tweets =='' or num_tweets == '':
+        if not entry_manager.allFieldsFilled():
             self.field_warning_label['text']='*Please fill all fields*'
         else:
             #call tweet generator
@@ -49,12 +49,15 @@ class TwitterPage(CommonFrame):
             #print(twitter_handle)
             self.changePages('MenuPage')
 
-    def addButtons(self, button_frame):
+    # add in buttons in the frame and get back last row that we have a button
+    def addButtons(self, button_frame, button_row):
         button_manager = ButtonManager(button_frame, self.changePages)
         #send button
-        button_manager.createButton(button_frame, text='Enter', command=self.sendTwitterHandle, row=4, col=1)
+        button_manager.createButton(button_frame, text='Enter', command=self.sendTwitterHandle, row=button_row, col=1)
         #back button
-        button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=6,col=0)
+        button_manager.createChangePageButton(page_name='MenuPage', text='Back', row=button_row+1,col=0)
+        return button_manager.getLastButtonRow()
+
 
     def addEnteries(self, entry_manager):
         entry_manager.addLabelWithEntry('Twitter handle of account:', 'twitter_handle')
