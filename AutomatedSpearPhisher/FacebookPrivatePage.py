@@ -115,5 +115,6 @@ class FacebookPrivatePage(CommonFrame):
             with open(filepath, "r", encoding='utf-8') as f:
                 message = f.read()
                 post(driver, friendURL, message)
+                sleep(3)
 
 
