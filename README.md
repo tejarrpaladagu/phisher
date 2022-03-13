@@ -5,6 +5,7 @@
 ## Authors: 
 - Abdullah Arif
 - Abdullah Chattha
+- Teja Ranga Rao
 - Ashraf Taifour
 - Mohamad Elchami
 - Steve Pham
